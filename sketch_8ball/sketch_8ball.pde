@@ -3,12 +3,18 @@ interface isCollideable{
   float shiftangle();
 }
 
+void setup(){
+  size(1200, 600);
+  Billiard b = new Billiard();
+  b.setTable();
+  }
+  
 class Billiard{
   PImage table;
   
   Billiard(){
   table = loadImage("pooltable.png");
-  setTable();
+  //setTable();
   //INSTANCE VARIABLES RESET
   }
   
@@ -18,6 +24,7 @@ class Billiard{
   }
   
   void display(){
+    table.resize(1000, 800);
     image(table,0,0);
 }
 }
