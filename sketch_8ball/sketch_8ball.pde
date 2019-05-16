@@ -24,7 +24,7 @@ class Billiard{
   }
   
   void display(){
-    table.resize(1000, 800);
+    table.resize(1200, 600);
     image(table,0,0);
 }
 }
