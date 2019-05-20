@@ -42,6 +42,13 @@ class Billiard{
     BallsToDisplay.add(wb);
     
     display();
+    pushMatrix();
+    translate(315, 320);
+    rotate(radians(90));
+   // rotate(radians(tan(mouseY/(mouseX+2))));  <-- Need to figure out how to rotate stick
+    fill(165,42,42);
+    rect(0,0, 10, 500);
+    popMatrix();
   }
   
   void display(){
