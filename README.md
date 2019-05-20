@@ -9,3 +9,8 @@ Thursday May 16
 
 Friday May 17th - Sunday May  19th
   -
+
+
+Monday May 20th:
+  -Created the setup for the pool table -> stick, cue ball, and the 15 colored balls.
+    Need to figure out how to differentiate stripes and solids as well as stick rotation.
