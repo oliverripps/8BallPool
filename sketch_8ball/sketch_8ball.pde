@@ -18,6 +18,7 @@ class Billiard{
                            922, 295, 922, 325, 922, 355,
                            948, 280, 948, 310, 948, 340, 948, 370,
                            974, 265, 974, 295, 974, 325, 974, 355, 974, 385 };
+                           
   int[] setColor = new int[]{255,255,0, 0,0,255, 255,0,0, 128,0,128, 255,165,0, 50,205,50, 128, 0, 32,
                              255,255,0, 0,0,255, 255,0,0, 128,0,128, 255,165,0, 50,205,50, 128, 0, 32,
                              0, 0, 0};
@@ -37,6 +38,9 @@ class Billiard{
       Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2]);
       BallsToDisplay.add(ba);
     }
+    Ball wb = new Ball(330, 325, 255, 255, 255);
+    BallsToDisplay.add(wb);
+    
     display();
   }
   
@@ -69,5 +73,10 @@ class Billiard{
     }
     void move(){
       x--;
+    }
+  }
+  class WhiteBall{
+    WhiteBall(){
+      super();
     }
   }
