@@ -6,3 +6,6 @@ DEVELOPMENT LOG!!!
 
 Thursday May 16
   -Got our prototype approved and Oliver began just messing around adding the framework and background images. Not much progress made(night before AP), but a little experimentation at the start.
+
+Friday May 17th - Sunday May  19th
+  -
