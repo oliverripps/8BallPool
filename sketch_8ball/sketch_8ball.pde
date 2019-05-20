@@ -13,6 +13,8 @@ void setup(){
 class Billiard{
   PImage table;
   ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
+  int[] setPos = new int[]{870, 340, 885, 325}
+    
   Billiard(){
   table = loadImage("pooltable.png");
   //setTable();
@@ -21,8 +23,8 @@ class Billiard{
   
   void setTable(){
     //SET UP BALLS
-    for(int i=0;i<13;i++){
-      Ball ba = new Ball();
+    for(int i=0;i<2;i++){
+      Ball ba = new Ball(setPos[i*2], setPos[i*2+1]);
       BallsToDisplay.add(ba);
     }
     display();
@@ -40,9 +42,9 @@ class Billiard{
 
   class Ball{
     int x,y;
-    Ball(){
-      x=870;
-      y=324;
+    Ball(int xx, int yy){
+      x=xx;
+      y=yy;
       //INSTANCE VARIABLES
     }
     
