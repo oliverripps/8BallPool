@@ -1,3 +1,5 @@
+Billiard game;
+
 interface isCollideable{
   boolean transferspeed();
   float shiftangle();
@@ -6,13 +8,18 @@ interface isCollideable{
 void setup(){
   size(1200, 650);
   Billiard b = new Billiard();
+  game=b;
   b.setTable();
   }
   
   
+void draw(){
+  game.display();
+}
 class Billiard{
   PImage table;
-  ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
+  int power;
+  ArrayList<Ball> BallsTodisplay = new ArrayList<Ball>();
   int[] setPos = new int[]{870, 325, 
                            896, 310, 896, 340,
                            922, 295, 922, 325, 922, 355,
@@ -28,18 +35,24 @@ class Billiard{
     
   Billiard(){
   table = loadImage("pooltable.png");
+  power=0;
   //setTable();
   //INSTANCE VARIABLES RESET
   }
   
+  void mouseDragged(){
+    power+=5;
+  }
+  
+ 
   void setTable(){
     //SET UP BALLS
     for(int i=0;i<15;i++){
       Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2]);
-      BallsToDisplay.add(ba);
+      BallsTodisplay.add(ba);
     }
     Ball wb = new Ball(330, 325, 255, 255, 255);
-    BallsToDisplay.add(wb);
+    BallsTodisplay.add(wb);
     
     display();
     pushMatrix();
@@ -47,16 +60,25 @@ class Billiard{
     rotate(radians(90));
    // rotate(radians(tan(mouseY/(mouseX+2))));  <-- Need to figure out how to rotate stick
     fill(165,42,42);
-    rect(0,0, 10, 500);
+    rect(0-power,0, 10, 500);
     popMatrix();
   }
   
   void display(){
     table.resize(1200,650);
     background(table);
-    for(Ball i: BallsToDisplay){
+    for(Ball i: BallsTodisplay){
       i.display();
     }
+    pushMatrix();
+    translate(315, 320);
+    rotate(radians(90));
+   // rotate(radians(tan(mouseY/(mouseX+2))));  <-- Need to figure out how to rotate stick
+    fill(165,42,42);
+    rect(0,0-power, 10, 500);
+    popMatrix();
+    rect(200,30,power,10);
+    
     
 }
 }
