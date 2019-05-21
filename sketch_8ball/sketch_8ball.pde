@@ -57,10 +57,6 @@ class Billiard{
     power+=5;
   }
   
-  void released(){
-    w.transferspeed(power);
-    power=0;
-  }
     
   ArrayList<Ball> setTable(){
     //SET UP BALLS
@@ -81,6 +77,11 @@ class Billiard{
     display();
     return BallsTodisplay;
 
+  }
+  
+    void released(){
+    w.transferspeed(power);
+    power=0;
   }
   
   void display(){
@@ -132,7 +133,7 @@ class Billiard{
       c1 = r;
       c2 = g;
       c3 = b;
-      speed=0;
+      speed=5;
       //INSTANCE VARIABLES
     }
     
@@ -158,12 +159,21 @@ class Billiard{
     int c1, c2, c3;
     int speed;
     int angle;
-    WhiteBall(int xx, int yy, int r, int g, int b){
-      super(xx,yy,r,g,b);
+    
+    
+    WhiteBall(int xcor, int yy, int r, int g, int b){
+      x=xcor;
+      y=yy;
+      c1 = r;
+      c2 = g;
+      c3 = b;
+      speed=0;
     }
+    
     boolean transferspeed(int power){
     speed+=power/2;
     return true;
+    
     }
   float shiftangle(float oldangle){
     return oldangle;
