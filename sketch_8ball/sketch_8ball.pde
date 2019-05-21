@@ -91,6 +91,21 @@ class Billiard{
       if(power>200){
         power=200;
       }
+      if(power<=200 && power>150){
+        fill(0,160,0);
+      }
+      if(power<150 && power>100){
+        fill(255,255,0);
+      }
+      if(power<100 && power>50){
+        fill(255,140,0);
+      }
+      if(power<50 && power>00){
+        fill(255,0,0);
+      }
+      
+      
+      
     rect(400,30,-power,20);
     }
     
