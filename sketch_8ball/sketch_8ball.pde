@@ -1,19 +1,22 @@
 Billiard game;
-
+boolean play;
+ArrayList<Ball> balls;
+  
 interface isCollideable{
-  boolean transferspeed();
-  float shiftangle();
+  boolean transferspeed(int i);
+  float shiftangle(float f);
 }
 
 void setup(){
   size(1200, 650);
   Billiard b = new Billiard();
   game=b;
-  b.setTable();
+  balls=game.setTable();
   }
-  
+
 void mouseDragged(){
   game.movestick();
+  play=true;
   }
 void mouseReleased(){
   game.released();
@@ -21,10 +24,14 @@ void mouseReleased(){
 }
 void draw(){
   game.display();
+  for(Ball i:balls){
+    i.move();
+}
 }
 class Billiard{
   PImage table;
   int power;
+  WhiteBall w;
   ArrayList<Ball> BallsTodisplay = new ArrayList<Ball>();
   int[] setPos = new int[]{870, 325, 
                            896, 310, 896, 340,
@@ -51,19 +58,18 @@ class Billiard{
   }
   
   void released(){
+    w.transferspeed(power);
     power=0;
   }
     
-  void setTable(){
+  ArrayList<Ball> setTable(){
     //SET UP BALLS
     for(int i=0;i<15;i++){
       Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2]);
       BallsTodisplay.add(ba);
     }
-    Ball wb = new Ball(330, 325, 255, 255, 255);
+    WhiteBall wb = new WhiteBall(330, 325, 255, 255, 255);
     BallsTodisplay.add(wb);
-    
-    display();
     pushMatrix();
     translate(315, 320);
     rotate(radians(90));
@@ -71,6 +77,10 @@ class Billiard{
     fill(165,42,42);
     rect(0-power,0, 10, 500);
     popMatrix();
+    w=wb;
+    display();
+    return BallsTodisplay;
+
   }
   
   void display(){
@@ -86,7 +96,6 @@ class Billiard{
     fill(165,42,42);
     rect(0,0+power, 10, 500);
     popMatrix();
-    
     if(power!=0){
       if(power>200){
         power=200;
@@ -106,35 +115,58 @@ class Billiard{
       
       
       
-    rect(400,30,-power,20);
+    rect(400,20,-power,20);
     }
     
 }
 }
 
-  class Ball{
+  class Ball implements isCollideable{
     int x,y;
     int c1, c2, c3;
+    int speed;
+    int angle;
     Ball(int xx, int yy, int r, int g, int b){
       x=xx;
       y=yy;
       c1 = r;
       c2 = g;
       c3 = b;
+      speed=0;
       //INSTANCE VARIABLES
     }
     
     void display(){
-      for (int i =0; i<15; i++){
-         fill(c1, c2, c3);
-      circle(x,y,30);}
+      fill(c1, c2, c3);
+      circle(x,y,30);
     }
-    void move(){
-      x--;
-    }
+   void move(){
+     x+=speed;
+   }
+  boolean transferspeed(int power){
+    speed+=power/2;
+    return true;
   }
-  class WhiteBall{
-    WhiteBall(){
-      super();
+  float shiftangle(float oldangle){
+    return oldangle;
+    //JUST SO NO ERROR
+  }
+  }
+  
+  class WhiteBall extends Ball{
+    int x,y;
+    int c1, c2, c3;
+    int speed;
+    int angle;
+    WhiteBall(int xx, int yy, int r, int g, int b){
+      super(xx,yy,r,g,b);
     }
+    boolean transferspeed(int power){
+    speed+=power/2;
+    return true;
+    }
+  float shiftangle(float oldangle){
+    return oldangle;
+    //JUST SO NO ERROR
+  }
   }
