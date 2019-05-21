@@ -17,6 +17,7 @@ void mouseDragged(){
   }
 void mouseReleased(){
   game.released();
+  //startHit();
 }
 void draw(){
   game.display();
@@ -85,9 +86,13 @@ class Billiard{
     fill(165,42,42);
     rect(0,0+power, 10, 500);
     popMatrix();
-    fill
-    rect(400,30,-power,20);
     
+    if(power!=0){
+      if(power>200){
+        power=200;
+      }
+    rect(400,30,-power,20);
+    }
     
 }
 }
