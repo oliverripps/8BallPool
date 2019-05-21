@@ -12,7 +12,12 @@ void setup(){
   b.setTable();
   }
   
-  
+void mouseDragged(){
+  game.movestick();
+  }
+void mouseReleased(){
+  game.released();
+}
 void draw(){
   game.display();
 }
@@ -40,11 +45,14 @@ class Billiard{
   //INSTANCE VARIABLES RESET
   }
   
-  void mouseDragged(){
+  void movestick(){
     power+=5;
   }
   
- 
+  void released(){
+    power=0;
+  }
+    
   void setTable(){
     //SET UP BALLS
     for(int i=0;i<15;i++){
@@ -75,9 +83,10 @@ class Billiard{
     rotate(radians(90));
    // rotate(radians(tan(mouseY/(mouseX+2))));  <-- Need to figure out how to rotate stick
     fill(165,42,42);
-    rect(0,0-power, 10, 500);
+    rect(0,0+power, 10, 500);
     popMatrix();
-    rect(200,30,power,10);
+    fill
+    rect(400,30,-power,20);
     
     
 }
