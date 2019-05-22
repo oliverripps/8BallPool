@@ -222,7 +222,7 @@ class Billiard{
   }
   
   boolean bounce(){
-    if(x<78){
+    if(x<85){
       angle=180-angle;
       return true;
     }
