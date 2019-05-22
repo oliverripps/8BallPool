@@ -136,6 +136,7 @@ class Billiard{
       speed=5;
       //INSTANCE VARIABLES
     }
+    Ball(){};
     
     void display(){
       fill(c1, c2, c3);
