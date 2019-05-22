@@ -32,6 +32,7 @@ void draw(){
   white.move();
 }
 class Billiard{
+  Boolean in;
   PImage table;
   int power;
   WhiteBall w;
@@ -51,6 +52,7 @@ class Billiard{
     
   Billiard(){
   table = loadImage("pooltable.png");
+  in=false;
   power=0;
   //setTable();
   //INSTANCE VARIABLES RESET
@@ -62,7 +64,10 @@ class Billiard{
   WhiteBall returnWhite(){
     return w;
   }
-    
+  void removeBall(WhiteBall b){
+    in=true;
+  }
+  
   ArrayList<Ball> setTable(){
     //SET UP BALLS
     for(int i=0;i<15;i++){
@@ -96,7 +101,9 @@ class Billiard{
     for(Ball i: BallsTodisplay){
       i.display();
     }
-    w.display();
+    if(!in){
+      w.display();
+    }
     pushMatrix();
     translate(315, 320);
     rotate(radians(90));
@@ -243,21 +250,32 @@ class Billiard{
       return true;
     }
     if(x>1105){
-      if((y<88 && angle>0 && angle<90) || (y>559 && angle>270 && angle<360)){
+      if((y<88) || (y>559)){
         goin();
       }
       else{
       angle=180-angle;
-      angle=169;
+      angle=(int)(Math.random()*180)+90;
+      //CODE INSPIRED BY KAITLYN DUONG^^^^
       }
       return true;
     }
-    if(y<78){
+    if(y<72){
+      if(x>578 && x<618){
+        goin();
+      }
+      else{
       angle=360-angle;
+      }
       return true;
     }
-    if(y>565){
+    if(y>560){
+      if(x>578 && x<618){
+        goin();
+      }
+      else{
       angle=360-angle;
+      }
       return true;
     }
     return false;
@@ -274,10 +292,8 @@ class Billiard{
     
   }
   void goin(){
-    c1=255;
-    c2=0;
-    c3=0;
     speed=0;
+    game.removeBall(this);
   }
    void display(){
       fill(c1, c2, c3);
