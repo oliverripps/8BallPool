@@ -1,6 +1,7 @@
 Billiard game;
 boolean play;
 ArrayList<Ball> balls;
+WhiteBall white;
   
 interface isCollideable{
   boolean transferspeed(int i);
@@ -12,6 +13,7 @@ void setup(){
   Billiard b = new Billiard();
   game=b;
   balls=game.setTable();
+  white=game.returnWhite();
   }
 
 void mouseDragged(){
@@ -27,6 +29,7 @@ void draw(){
   for(Ball i:balls){
     i.move();
 }
+  white.move();
 }
 class Billiard{
   PImage table;
@@ -56,7 +59,9 @@ class Billiard{
   void movestick(){
     power+=5;
   }
-  
+  WhiteBall returnWhite(){
+    return w;
+  }
     
   ArrayList<Ball> setTable(){
     //SET UP BALLS
@@ -65,7 +70,7 @@ class Billiard{
       BallsTodisplay.add(ba);
     }
     WhiteBall wb = new WhiteBall(330, 325, 255, 255, 255);
-    BallsTodisplay.add(wb);
+    //BallsTodisplay.add(wb);
     pushMatrix();
     translate(315, 320);
     rotate(radians(90));
@@ -90,6 +95,7 @@ class Billiard{
     for(Ball i: BallsTodisplay){
       i.display();
     }
+    w.display();
     pushMatrix();
     translate(315, 320);
     rotate(radians(90));
@@ -127,14 +133,18 @@ class Billiard{
     int c1, c2, c3;
     int speed;
     int angle;
+    
     Ball(int xx, int yy, int r, int g, int b){
       x=xx;
       y=yy;
       c1 = r;
       c2 = g;
       c3 = b;
-      speed=5;
+      speed=0;
+      angle=0;
       //INSTANCE VARIABLES
+    }
+    Ball(){
     }
     
     void display(){
@@ -142,7 +152,8 @@ class Billiard{
       circle(x,y,30);
     }
    void move(){
-     x+=speed;
+     x+=cos(angle)*speed;
+     y+=sin(angle)*speed;
    }
   boolean transferspeed(int power){
     speed+=power/2;
@@ -161,17 +172,20 @@ class Billiard{
     int angle;
     
     
-    WhiteBall(int xcor, int yy, int r, int g, int b){
-      x=xcor;
+    WhiteBall(int xx, int yy, int r, int g, int b){
+      x=xx;
       y=yy;
       c1 = r;
       c2 = g;
       c3 = b;
       speed=0;
+      angle=0;
+      //INSTANCE VARIABLES
     }
+   
     
     boolean transferspeed(int power){
-    speed+=power/2;
+    speed+=power/4;
     return true;
     
     }
@@ -179,4 +193,35 @@ class Billiard{
     return oldangle;
     //JUST SO NO ERROR
   }
+  
+  boolean bounce(){
+    if(x<78){
+      int temp=270-angle;
+      angle=270+temp;
+      return true;
+    }
+    if(x>1117){
+      int temp=angle;
+      angle=180-temp;
+      return true;
+    }
+    
+    return false;
+    //rect(65,62,1069,525);
+    //if(x<20*/
+  }
+  void move(){
+     x+=cos((float)(Math.toRadians(float(angle))))*speed;
+     y+=sin((float)(Math.toRadians(float(angle))))*speed;
+     if(bounce()){
+       for(int i=0;i<0;i++){
+         x+=cos((float)(Math.toRadians(float(angle))))*speed;
+         y+=sin((float)(Math.toRadians(float(angle))))*speed;
+       }
+   }
+  }
+   void display(){
+      fill(c1, c2, c3);
+      circle(x,y,30);
+    }
   }
