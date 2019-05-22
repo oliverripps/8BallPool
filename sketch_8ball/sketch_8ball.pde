@@ -152,12 +152,17 @@ class Billiard{
       circle(x,y,30);
     }
    boolean bounce(){
-    if(x<78){
+    if(x<100){
+      if(y<90 && angle>90 && angle<180){
+        goin();
+      }
+      else{
       angle=180-angle;
+      }
       return true;
     }
     if(x>1112){
-      //angle=45;
+      angle=50;
       angle=180-angle;
       return true;
     }
@@ -189,6 +194,11 @@ class Billiard{
   float shiftangle(float oldangle){
     return oldangle;
     //JUST SO NO ERROR
+  }
+  void goin(){
+    c1=255;
+    c2=0;
+    c3=0;
   }
   }
   
@@ -222,13 +232,23 @@ class Billiard{
   }
   
   boolean bounce(){
-    if(x<85){
+    if(x<100){
+      if((y<90 && angle>90 && angle<180) || (y>555 && angle>180 && angle<270)){
+        goin();
+      }
+      else{
       angle=180-angle;
+      }
       return true;
     }
-    if(x>1112){
-      //angle=45;
+    if(x>1100){
+      if((y<90 && angle>0 && angle<90) || (y>555 && angle>270 && angle<360)){
+        goin();
+      }
+      else{
+      angle=45;
       angle=180-angle;
+      }
       return true;
     }
     if(y<78){
@@ -251,6 +271,12 @@ class Billiard{
        }
    }
     
+  }
+  void goin(){
+    c1=255;
+    c2=0;
+    c3=0;
+    speed=0;
   }
    void display(){
       fill(c1, c2, c3);
