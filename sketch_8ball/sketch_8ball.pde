@@ -92,6 +92,7 @@ class Billiard{
   void display(){
     table.resize(1200,650);
     background(table);
+    
     for(Ball i: BallsTodisplay){
       i.display();
     }
@@ -232,8 +233,8 @@ class Billiard{
   }
   
   boolean bounce(){
-    if(x<100){
-      if((y<90 && angle>90 && angle<180) || (y>555 && angle>180 && angle<270)){
+    if(x<85){
+      if((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)){
         goin();
       }
       else{
@@ -241,13 +242,13 @@ class Billiard{
       }
       return true;
     }
-    if(x>1100){
-      if((y<90 && angle>0 && angle<90) || (y>555 && angle>270 && angle<360)){
+    if(x>1105){
+      if((y<88 && angle>0 && angle<90) || (y>559 && angle>270 && angle<360)){
         goin();
       }
       else{
-      angle=45;
       angle=180-angle;
+      angle=169;
       }
       return true;
     }
