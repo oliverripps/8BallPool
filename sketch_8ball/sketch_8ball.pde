@@ -196,23 +196,27 @@ class Billiard{
   
   boolean bounce(){
     if(x<78){
-      int temp=270-angle;
-      angle=270+temp;
+      angle=180-angle;
       return true;
     }
-    if(x>1117){
-      int temp=angle;
-      angle=180-temp;
+    if(x>1112){
+      angle=45;
+      angle=180-angle;
       return true;
     }
-    
+    if(y<78){
+      angle=360-angle;
+      return true;
+    }
+    if(y>565){
+      angle=360-angle;
+      return true;
+    }
     return false;
-    //rect(65,62,1069,525);
-    //if(x<20*/
   }
   void move(){
      x+=cos((float)(Math.toRadians(float(angle))))*speed;
-     y+=sin((float)(Math.toRadians(float(angle))))*speed;
+     y-=sin((float)(Math.toRadians(float(angle))))*speed;
      if(bounce()){
        for(int i=0;i<0;i++){
          x+=cos((float)(Math.toRadians(float(angle))))*speed;
