@@ -34,6 +34,7 @@ void draw(){
 class Billiard{
   PImage table;
   int power;
+  float angle;
   WhiteBall w;
   ArrayList<Ball> BallsTodisplay = new ArrayList<Ball>();
   int[] setPos = new int[]{870, 325, 
@@ -74,7 +75,8 @@ class Billiard{
     pushMatrix();
     translate(315, 320);
     rotate(radians(90));
-   // rotate(radians(tan(mouseY/(mouseX+2))));  <-- Need to figure out how to rotate stick
+    angle = atan2(mouseY-height/4, mouseX-width/4);
+    rotate(angle); // <-- Need to figure out how to rotate stick
     fill(165,42,42);
     rect(0-power,0, 10, 500);
     popMatrix();
@@ -87,6 +89,7 @@ class Billiard{
     void released(){
     w.transferspeed(power);
     power=0;
+    w.transferangle(angle);
   }
   
   void display(){
@@ -99,7 +102,8 @@ class Billiard{
     pushMatrix();
     translate(315, 320);
     //rotate(radians(90));
-    rotate(atan2(mouseY-height/4, mouseX-width/4)); // <-- Need to figure out how to rotate stick
+    angle = atan2(mouseY-height/4, mouseX-width/4);
+    rotate(angle); // <-- Need to figure out how to rotate stick
     fill(165,42,42);
     rect(0,0+power, 10, 500);
     popMatrix();
@@ -132,7 +136,7 @@ class Billiard{
     int x,y;
     int c1, c2, c3;
     int speed;
-    int angle;
+    float angle;
     
     Ball(int xx, int yy, int r, int g, int b){
       x=xx;
@@ -174,18 +178,22 @@ class Billiard{
     return false;
   }
   void move(){
-     x+=cos((float)(Math.toRadians(float(angle))))*speed;
-     y-=sin((float)(Math.toRadians(float(angle))))*speed;
+     x+=cos((float)(Math.toRadians(angle)))*speed;
+     y-=sin((float)(Math.toRadians(angle)))*speed;
      if(bounce()){
        for(int i=0;i<0;i++){
-         x+=cos((float)(Math.toRadians(float(angle))))*speed;
-         y+=sin((float)(Math.toRadians(float(angle))))*speed;
+         x+=cos((float)(Math.toRadians(angle)))*speed;
+         y+=sin((float)(Math.toRadians(angle)))*speed;
        }
    }
     
   }
   boolean transferspeed(int power){
     speed+=power/2;
+    return true;
+  }
+  boolean transferangle(float ang){
+    angle = ang;
     return true;
   }
   float shiftangle(float oldangle){
@@ -198,7 +206,7 @@ class Billiard{
     int x,y;
     int c1, c2, c3;
     int speed;
-    int angle;
+    float angle;
     
     
     WhiteBall(int xx, int yy, int r, int g, int b){
@@ -218,7 +226,14 @@ class Billiard{
     return true;
     
     }
+    
+    boolean transferangle(float ang){
+    angle = ang;
+    return true;
+    }
+    
   float shiftangle(float oldangle){
+    angle = ang;
     return oldangle;
     //JUST SO NO ERROR
   }
@@ -244,12 +259,12 @@ class Billiard{
     return false;
   }
   void move(){
-     x+=cos((float)(Math.toRadians(float(angle))))*speed;
-     y-=sin((float)(Math.toRadians(float(angle))))*speed;
+     x+=cos((float)(Math.toRadians(angle)))*speed;
+     y-=sin((float)(Math.toRadians(angle)))*speed;
      if(bounce()){
        for(int i=0;i<0;i++){
-         x+=cos((float)(Math.toRadians(float(angle))))*speed;
-         y+=sin((float)(Math.toRadians(float(angle))))*speed;
+         x+=cos((float)(Math.toRadians(angle)))*speed;
+         y+=sin((float)(Math.toRadians(angle)))*speed;
        }
    }
     
