@@ -98,8 +98,8 @@ class Billiard{
     w.display();
     pushMatrix();
     translate(315, 320);
-    rotate(radians(90));
-   // rotate(radians(tan(mouseY/(mouseX+2))));  <-- Need to figure out how to rotate stick
+    //rotate(radians(90));
+    rotate(atan2(mouseY-height/4, mouseX-width/4)); // <-- Need to figure out how to rotate stick
     fill(165,42,42);
     rect(0,0+power, 10, 500);
     popMatrix();
