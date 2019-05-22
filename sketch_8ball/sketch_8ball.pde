@@ -151,10 +151,37 @@ class Billiard{
       fill(c1, c2, c3);
       circle(x,y,30);
     }
-   void move(){
-     x+=cos(angle)*speed;
-     y+=sin(angle)*speed;
+   boolean bounce(){
+    if(x<78){
+      angle=180-angle;
+      return true;
+    }
+    if(x>1112){
+      //angle=45;
+      angle=180-angle;
+      return true;
+    }
+    if(y<78){
+      angle=360-angle;
+      return true;
+    }
+    if(y>565){
+      angle=360-angle;
+      return true;
+    }
+    return false;
+  }
+  void move(){
+     x+=cos((float)(Math.toRadians(float(angle))))*speed;
+     y-=sin((float)(Math.toRadians(float(angle))))*speed;
+     if(bounce()){
+       for(int i=0;i<0;i++){
+         x+=cos((float)(Math.toRadians(float(angle))))*speed;
+         y+=sin((float)(Math.toRadians(float(angle))))*speed;
+       }
    }
+    
+  }
   boolean transferspeed(int power){
     speed+=power/2;
     return true;
@@ -200,7 +227,7 @@ class Billiard{
       return true;
     }
     if(x>1112){
-      angle=45;
+      //angle=45;
       angle=180-angle;
       return true;
     }
@@ -223,6 +250,7 @@ class Billiard{
          y+=sin((float)(Math.toRadians(float(angle))))*speed;
        }
    }
+    
   }
    void display(){
       fill(c1, c2, c3);
