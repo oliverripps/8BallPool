@@ -1,12 +1,10 @@
 Billiard game;
 boolean play;
 ArrayList<Ball> balls;
-WhiteBall white;
   
 interface isCollideable{
   boolean transferspeed(int i);
   float shiftangle(float f);
-  
 }
 
 void setup(){
@@ -14,7 +12,6 @@ void setup(){
   Billiard b = new Billiard();
   game=b;
   balls=game.setTable();
-  white=game.returnWhite();
   }
 
 void mouseDragged(){
@@ -30,7 +27,6 @@ void draw(){
   for(Ball i:balls){
     i.move();
 }
-  white.move();
 }
 class Billiard{
   PImage table;
@@ -60,9 +56,7 @@ class Billiard{
   void movestick(){
     power+=5;
   }
-  WhiteBall returnWhite(){
-    return w;
-  }
+  
     
   ArrayList<Ball> setTable(){
     //SET UP BALLS
@@ -71,7 +65,7 @@ class Billiard{
       BallsTodisplay.add(ba);
     }
     WhiteBall wb = new WhiteBall(330, 325, 255, 255, 255);
-    //BallsTodisplay.add(wb);
+    BallsTodisplay.add(wb);
     pushMatrix();
     translate(315, 320);
     rotate(radians(90));
@@ -96,7 +90,6 @@ class Billiard{
     for(Ball i: BallsTodisplay){
       i.display();
     }
-    w.display();
     pushMatrix();
     translate(315, 320);
     rotate(radians(90));
@@ -134,17 +127,14 @@ class Billiard{
     int c1, c2, c3;
     int speed;
     int angle;
-    
     Ball(int xx, int yy, int r, int g, int b){
       x=xx;
       y=yy;
       c1 = r;
       c2 = g;
       c3 = b;
-      speed=0;
+      speed=5;
       //INSTANCE VARIABLES
-    }
-    Ball(){
     }
     
     void display(){
@@ -171,19 +161,17 @@ class Billiard{
     int angle;
     
     
-    WhiteBall(int xx, int yy, int r, int g, int b){
-      x=xx;
+    WhiteBall(int xcor, int yy, int r, int g, int b){
+      x=xcor;
       y=yy;
       c1 = r;
       c2 = g;
       c3 = b;
       speed=0;
-      //INSTANCE VARIABLES
     }
-   
     
     boolean transferspeed(int power){
-    speed+=power/4;
+    speed+=power/2;
     return true;
     
     }
@@ -191,11 +179,4 @@ class Billiard{
     return oldangle;
     //JUST SO NO ERROR
   }
-  void move(){
-     x+=speed;
-   }
-   void display(){
-      fill(c1, c2, c3);
-      circle(x,y,30);
-    }
   }
