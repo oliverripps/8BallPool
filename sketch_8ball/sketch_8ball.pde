@@ -93,7 +93,7 @@ class Billiard{
   }
   
     void released(){
-    w.transferangle(90); ////////////////////////////////////////////////////////////
+    w.transferangle(degrees(whiteAngle)+180); ////////////////////////////////////////////////////////////
     w.transferspeed(power);
     power=0;
     
@@ -118,7 +118,7 @@ class Billiard{
     
     //
     textSize(32);
-    text(""+whiteAngle, 10, 30); 
+    text(""+degrees(whiteAngle), 10, 30); 
     fill(0, 102, 153);
     //
     rotate(angle); // <-- Need to figure out how to rotate stick
@@ -199,12 +199,12 @@ class Billiard{
     return false;
   }
   void move(){
-     x+=cos((float)(Math.toRadians(angle)))*speed;
-     y-=sin((float)(Math.toRadians(angle)))*speed;
+     x+=cos((float)(angle))*speed;
+     y-=sin((float)(angle))*speed;
      if(bounce()){
        for(int i=0;i<0;i++){
-         x+=cos((float)(Math.toRadians(angle)))*speed;
-         y+=sin((float)(Math.toRadians(angle)))*speed;
+         x+=cos((float)(angle))*speed;
+         y+=sin((float)(angle))*speed;
        }
    }
     
