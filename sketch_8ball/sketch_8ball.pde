@@ -31,6 +31,8 @@ void draw(){
 }
   white.move();
 }
+
+
 class Billiard{
   PImage table;
   int power;
@@ -46,13 +48,11 @@ class Billiard{
   int[] setColor = new int[]{255,255,0, 0,0,255, 255,0,0, 128,0,128, 255,165,0, 50,205,50, 128, 0, 32,
                              255,255,0, 0,0,255, 255,0,0, 128,0,128, 255,165,0, 50,205,50, 128, 0, 32,
                              0, 0, 0};
-                           
-                        
-                           
-    
+  
   Billiard(){
   table = loadImage("pooltable.png");
   power=0;
+  angle = 0;
   //setTable();
   //INSTANCE VARIABLES RESET
   }
@@ -72,14 +72,14 @@ class Billiard{
     }
     WhiteBall wb = new WhiteBall(330, 325, 255, 255, 255);
     //BallsTodisplay.add(wb);
-    pushMatrix();
-    translate(315, 320);
+   /* pushMatrix();
+    translate(330, 320);
     rotate(radians(90));
     angle = atan2(mouseY-height/4, mouseX-width/4);
     rotate(angle); // <-- Need to figure out how to rotate stick
     fill(165,42,42);
-    rect(0-power,0, 10, 500);
-    popMatrix();
+    rect(0 + power,0, 10, 500);
+    popMatrix();*/
     w=wb;
     display();
     return BallsTodisplay;
@@ -100,7 +100,7 @@ class Billiard{
     }
     w.display();
     pushMatrix();
-    translate(315, 320);
+    translate(330, 320);
     //rotate(radians(90));
     angle = atan2(mouseY-height/4, mouseX-width/4);
     rotate(angle); // <-- Need to figure out how to rotate stick
@@ -233,7 +233,6 @@ class Billiard{
     }
     
   float shiftangle(float oldangle){
-    angle = ang;
     return oldangle;
     //JUST SO NO ERROR
   }
