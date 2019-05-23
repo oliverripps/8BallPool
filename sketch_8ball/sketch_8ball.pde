@@ -5,7 +5,7 @@ WhiteBall white;
   
 interface isCollideable{
   boolean transferspeed(int i);
-  float shiftangle(float f);
+  boolean transferangle(float f);
 }
 
 void setup(){
@@ -20,6 +20,7 @@ void mouseDragged(){
   game.movestick();
   play=true;
   }
+  
 void mouseReleased(){
   game.released();
   //startHit();
@@ -34,9 +35,10 @@ void draw(){
 
 
 class Billiard{
+  Boolean in;
   PImage table;
   int power;
-  float angle;
+  float whiteAngle;
   WhiteBall w;
   ArrayList<Ball> BallsTodisplay = new ArrayList<Ball>();
   int[] setPos = new int[]{870, 325, 
@@ -51,8 +53,9 @@ class Billiard{
   
   Billiard(){
   table = loadImage("pooltable.png");
+  in=false;
   power=0;
-  angle = 0;
+  whiteAngle =0;
   //setTable();
   //INSTANCE VARIABLES RESET
   }
@@ -63,7 +66,10 @@ class Billiard{
   WhiteBall returnWhite(){
     return w;
   }
-    
+  void removeBall(WhiteBall b){
+    in=true;
+  }
+  
   ArrayList<Ball> setTable(){
     //SET UP BALLS
     for(int i=0;i<15;i++){
@@ -74,9 +80,9 @@ class Billiard{
     //BallsTodisplay.add(wb);
    /* pushMatrix();
     translate(330, 320);
-    rotate(radians(90));
-    angle = atan2(mouseY-height/4, mouseX-width/4);
-    rotate(angle); // <-- Need to figure out how to rotate stick
+    rotate(radians(90));*/
+    //whiteAngle = atan2(mouseY-height/4, mouseX-width/4);
+    /*rotate(angle); // <-- Need to figure out how to rotate stick
     fill(165,42,42);
     rect(0 + power,0, 10, 500);
     popMatrix();*/
@@ -87,22 +93,34 @@ class Billiard{
   }
   
     void released(){
+    w.transferangle(90); ////////////////////////////////////////////////////////////
     w.transferspeed(power);
     power=0;
-    w.transferangle(angle);
+    
   }
   
   void display(){
     table.resize(1200,650);
     background(table);
+    
     for(Ball i: BallsTodisplay){
       i.display();
     }
-    w.display();
+    if(!in){
+      w.display();
+    }
+    
     pushMatrix();
     translate(330, 320);
-    //rotate(radians(90));
-    angle = atan2(mouseY-height/4, mouseX-width/4);
+    rotate(radians(-90));
+    float angle = atan2(mouseY-320, mouseX-330);
+    whiteAngle = angle;
+    
+    //
+    textSize(32);
+    text(""+whiteAngle, 10, 30); 
+    fill(0, 102, 153);
+    //
     rotate(angle); // <-- Need to figure out how to rotate stick
     fill(165,42,42);
     rect(0,0+power, 10, 500);
@@ -148,8 +166,6 @@ class Billiard{
       angle=0;
       //INSTANCE VARIABLES
     }
-
-
     Ball(){
     }
     
@@ -158,12 +174,17 @@ class Billiard{
       circle(x,y,30);
     }
    boolean bounce(){
-    if(x<78){
+    if(x<100){
+      if(y<90 && angle>90 && angle<180){
+        goin();
+      }
+      else{
       angle=180-angle;
+      }
       return true;
     }
     if(x>1112){
-      //angle=45;
+      angle=50;
       angle=180-angle;
       return true;
     }
@@ -196,9 +217,11 @@ class Billiard{
     angle = ang;
     return true;
   }
-  float shiftangle(float oldangle){
-    return oldangle;
-    //JUST SO NO ERROR
+  
+  void goin(){
+    c1=255;
+    c2=0;
+    c3=0;
   }
   }
   
@@ -232,27 +255,45 @@ class Billiard{
     return true;
     }
     
-  float shiftangle(float oldangle){
-    return oldangle;
-    //JUST SO NO ERROR
-  }
+
   
   boolean bounce(){
     if(x<85){
+      if((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)){
+        goin();
+      }
+      else{
       angle=180-angle;
+      }
       return true;
     }
-    if(x>1112){
-      //angle=45;
+    if(x>1105){
+      if((y<88) || (y>559)){
+        goin();
+      }
+      else{
       angle=180-angle;
+      angle=(int)(Math.random()*180)+90;
+      //CODE INSPIRED BY KAITLYN DUONG^^^^
+      }
       return true;
     }
-    if(y<78){
+    if(y<72){
+      if(x>578 && x<618){
+        goin();
+      }
+      else{
       angle=360-angle;
+      }
       return true;
     }
-    if(y>565){
+    if(y>560){
+      if(x>578 && x<618){
+        goin();
+      }
+      else{
       angle=360-angle;
+      }
       return true;
     }
     return false;
@@ -267,6 +308,10 @@ class Billiard{
        }
    }
     
+  }
+  void goin(){
+    speed=0;
+    game.removeBall(this);
   }
    void display(){
       fill(c1, c2, c3);
