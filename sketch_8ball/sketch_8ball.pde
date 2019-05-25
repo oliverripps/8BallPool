@@ -93,7 +93,7 @@ class Billiard{
   }
   
     void released(){
-    w.transferangle(degrees(whiteAngle)+180); ////////////////////////////////////////////////////////////
+    w.transferangle(180 - degrees(whiteAngle)); ////////////////////////////////////////////////////////////
     w.transferspeed(power);
     power=0;
     
