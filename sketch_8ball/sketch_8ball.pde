@@ -17,6 +17,12 @@ void setup() {
   white=game.returnWhite();
 }
 
+void mouseClicked() {
+    WhiteBall b = new WhiteBall(mouseX, mouseY, 255, 255, 255);
+    white = b;
+    balls.add(b);
+  }
+  
 void mouseDragged() {
   game.movestick();
   play=true;
@@ -250,17 +256,14 @@ class WhiteBall extends Ball {
 
   void setIn() {
     in = true;
+    replace();
   }
 
-  void mouseClicked() {
-    x = mouseX;
-    y = mouseY;
-  }
+  
   void replace() {
-    WhiteBall b = new WhiteBall(mouseX, mouseY, 255, 255, 255);
-    mouseClicked();
-    balls.add(b);
-    white = b;
+    fill(255, 255, 255);
+    circle(mouseX, mouseY, 30);
+    //mouseClicked();
     
   }
 
