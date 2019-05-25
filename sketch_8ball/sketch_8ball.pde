@@ -187,37 +187,55 @@ class Ball implements isCollideable {
     circle(x, y, 30);
   }
   boolean bounce() {
-    if (x<100) {
-      if (y<90 && angle>90 && angle<180) {
+    if (x<85) {
+      if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
         goin();
       } else {
         angle=180-angle;
       }
       return true;
     }
-    if (x>1112) {
-      angle=50;
-      angle=180-angle;
+    if (x>1105) {
+      if ((y<88) || (y>559)) {
+        goin();
+      } else {
+        angle=180-angle;
+        //angle=(int)(Math.random()*180)+90;
+        //CODE INSPIRED BY KAITLYN DUONG^^^^
+      }
       return true;
     }
-    if (y<78) {
-      angle=360-angle;
+    if (y<72) {
+      if (x>578 && x<618) {
+        goin();
+      } else {
+        angle=360-angle;
+      }
       return true;
     }
-    if (y>565) {
-      angle=360-angle;
+    if (y>560) {
+      if (x>578 && x<618) {
+        goin();
+      } else {
+        angle=360-angle;
+      }
       return true;
     }
     return false;
   }
-  boolean istouching(Ball other){
+  
+  void goin() {
+    speed=0;
+    balls.remove(this);
+  }
+  boolean isTouching(Ball other){
     
     return this.x == other.x && this.y == other.y; //this is too narrow
   }
   
   boolean anytouches(){
     for(Ball b:balls){
-      if(this.istouching(b)){
+      if(this.isTouching(b)){
         return true;
       }
       }
@@ -243,10 +261,11 @@ class Ball implements isCollideable {
   
   Ball checkTouch(){
     for(Ball b:balls){
-      if(this.istouching(b)){
+      if(this.isTouching(b)){
         return b;
       }
     }
+    return new Ball();
   }
       
   boolean transferspeed(int power) {
@@ -257,12 +276,6 @@ class Ball implements isCollideable {
     angle = ang;
     return true;
   }
-
-  void goin() {
-    c1=255;
-    c2=0;
-    c3=0;
-  }
 }
 
 class WhiteBall extends Ball {
@@ -271,9 +284,11 @@ class WhiteBall extends Ball {
   int speed;
   float angle;
   boolean in;
+  int counter;
 
 
   WhiteBall(int xx, int yy, int r, int g, int b) {
+    counter=0;
     x=xx;
     y=yy;
     c1 = r;
@@ -355,6 +370,10 @@ class WhiteBall extends Ball {
         y+=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
+    if(speed!=0 && counter%3==0){
+      speed--;
+    }
+    counter++;
   }
   void goin() {
     speed=0;
