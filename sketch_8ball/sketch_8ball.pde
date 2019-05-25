@@ -5,6 +5,7 @@ ArrayList<Ball> balls;
 WhiteBall white;
 
 interface isCollideable {
+  boolean isTouching(Ball other);
   boolean transferspeed(int i);
   boolean transferangle(float f);
 }
@@ -107,7 +108,7 @@ class Billiard {
   }
 
   void released() {
-    w.transferangle(180 - degrees(whiteAngle)); ////////////////////////////////////////////////////////////
+    w.transferangle(180 - degrees(whiteAngle)); 
     w.transferspeed(power);
     power=0;
   }
@@ -209,6 +210,20 @@ class Ball implements isCollideable {
     }
     return false;
   }
+  boolean istouching(Ball other){
+    
+    return this.x == other.x && this.y == other.y; //this is too narrow
+  }
+  
+  boolean anytouches(){
+    for(Ball b:balls){
+      if(this.istouching(b)){
+        return true;
+      }
+      }
+    return false;
+  }
+  
   void move() {
     x+=cos((float)(angle))*speed;
     y-=sin((float)(angle))*speed;
@@ -218,7 +233,22 @@ class Ball implements isCollideable {
         y+=sin((float)(angle))*speed;
       }
     }
+    Ball touching;
+  if(anytouches()){
+    touching=checkTouch();
+    touching.transferspeed(speed*2);
+    }
+
   }
+  
+  Ball checkTouch(){
+    for(Ball b:balls){
+      if(this.istouching(b)){
+        return b;
+      }
+    }
+  }
+      
   boolean transferspeed(int power) {
     speed+=power/2;
     return true;
@@ -293,7 +323,7 @@ class WhiteBall extends Ball {
         goin();
       } else {
         angle=180-angle;
-        angle=(int)(Math.random()*180)+90;
+        //angle=(int)(Math.random()*180)+90;
         //CODE INSPIRED BY KAITLYN DUONG^^^^
       }
       return true;
