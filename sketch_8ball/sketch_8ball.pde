@@ -32,7 +32,7 @@ void draw(){
 }
   white.move();
 }
-
+//
 
 class Billiard{
   Boolean in;
