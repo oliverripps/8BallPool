@@ -24,6 +24,9 @@ Wednesday May 22nd:
   -Figured out merge conflicts and branching strategy going forward.
   -Created the code to detect when a ball is pocketed and having it disappear(for now).
   -Thanks to Kaitlyn Duong for helping with the idea of changing angles the ball bounces off for the right wall to test the pocketing before we can actually change the game to incorporate angle.
-  
+
 Thursday May 23rd:
 -Both Oliver and Kevin had AP's the next day so we didn't do much but in class Kevin finished the rotation feature of the cue and hitting the ball at an angle on his branch.
+
+Friday May 24th-Sunday May 26th
+THE BALL STOPS

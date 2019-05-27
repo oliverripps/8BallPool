@@ -1,6 +1,7 @@
 Billiard game;
 boolean play;
 ArrayList<Ball> balls;
+boolean broken;
 
 WhiteBall white;
 
@@ -16,6 +17,7 @@ void setup() {
   game=b;
   balls=game.setTable();
   white=game.returnWhite();
+  broken=false;
 }
 
 void mouseClicked() {
@@ -36,6 +38,7 @@ void mouseReleased() {
 }
 void draw() {
   game.display();
+  
   for (Ball i : balls) {
     i.move();
   }
@@ -164,12 +167,14 @@ class Billiard {
 }
 
 class Ball implements isCollideable {
+  int counter;
   int x, y;
   int c1, c2, c3;
   int speed;
   float angle;
 
   Ball(int xx, int yy, int r, int g, int b) {
+    counter=0;
     x=xx;
     y=yy;
     c1 = r;
@@ -256,6 +261,10 @@ class Ball implements isCollideable {
     touching=checkTouch();
     touching.transferspeed(speed*2);
     }
+   if(speed!=0 && counter%3==0){
+      speed--;
+    }
+   counter++;
 
   }
   
@@ -361,6 +370,7 @@ class WhiteBall extends Ball {
     }
     return false;
   }
+  
   void move() {
     x+=cos((float)(Math.toRadians(angle)))*speed;
     y-=sin((float)(Math.toRadians(angle)))*speed;
@@ -370,15 +380,34 @@ class WhiteBall extends Ball {
         y+=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
-    if(speed!=0 && counter%3==0){
+    if(broken==false){
+      if(x>800){
+        for(Ball b:balls){
+          b.transferspeed((int)(Math.random()*2)+1);
+      }
+      broken=true;
+      }
+    }
+ 
+     Ball touching;
+  if(anytouches()){
+    touching=checkTouch();
+    touching.transferspeed(speed*2);
+    }
+     if(speed!=0 && counter%3==0){
       speed--;
     }
     counter++;
+
   }
+  
+
   void goin() {
     speed=0;
     game.removeBall(this);
   }
+ 
+  
   void display() {
     fill(c1, c2, c3);
     circle(x, y, 30);
