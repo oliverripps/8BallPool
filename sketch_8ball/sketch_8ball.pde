@@ -380,14 +380,14 @@ class WhiteBall extends Ball {
         y+=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
-    if(broken==false){
+    /*if(broken==false){
       if(x>800){
         for(Ball b:balls){
           b.transferspeed((int)(Math.random()*2)+1);
       }
       broken=true;
       }
-    }
+    }*/
  
      Ball touching;
   if(anytouches()){
