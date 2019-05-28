@@ -36,7 +36,8 @@ void mouseReleased() {
 void draw() {
   game.display();
   
-  for (Ball i : balls) {
+  for (int x = balls.size()-1; x >= 0; x--){
+    Ball i = balls.get(x);
     i.move();
   }
   game.moveW();
