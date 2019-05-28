@@ -186,7 +186,13 @@ class Ball implements isCollideable {
   }
   Ball() {
   }
-
+  
+  void setx(int n){
+    x=n;
+  }
+  void sety(int n){
+    y=n;
+  }
   void display() {
     fill(c1, c2, c3);
     circle(x, y, 30);
@@ -251,15 +257,15 @@ class Ball implements isCollideable {
     x+=cos((float)(angle))*speed;
     y-=sin((float)(angle))*speed;
     if (bounce()) {
-      for (int i=0; i<0; i++) {
+      for (int i=0; i<3; i++) {
         x+=cos((float)(angle))*speed;
         y+=sin((float)(angle))*speed;
       }
     }
-    Ball touching;
-  if(anytouches()){
+    ArrayList<Ball> touching;
     touching=checkTouch();
-    touching.transferspeed(speed*2);
+    for(Ball i:touching){
+      i.transferspeed(speed*2);
     }
    if(speed!=0 && counter%3==0){
       speed--;
@@ -268,13 +274,14 @@ class Ball implements isCollideable {
 
   }
   
-  Ball checkTouch(){
+  ArrayList<Ball> checkTouch(){
+    ArrayList<Ball> temp= new ArrayList<Ball>();
     for(Ball b:balls){
       if(this.isTouching(b)){
-        return b;
+        temp.add(b);
       }
     }
-    return new Ball();
+    return temp;
   }
       
   boolean transferspeed(int power) {
@@ -380,26 +387,37 @@ class WhiteBall extends Ball {
         y+=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
-    /*if(broken==false){
-      if(x>800){
+    if(broken==false){
         for(Ball b:balls){
-          b.transferspeed((int)(Math.random()*2)+1);
+          b.setx((int)random(800)+100);
+          b.sety((int)random(500)+100);
       }
       broken=true;
-      }
-    }*/
- 
-     Ball touching;
-  if(anytouches()){
-    touching=checkTouch();
-    touching.transferspeed(speed*2);
     }
-     if(speed!=0 && counter%3==0){
+      
+
+    ArrayList<Ball> touching;
+    touching=checkTouch();
+    for(Ball i:touching){
+      i.transferspeed(speed*2);
+    }
+   if(speed!=0 && counter%3==0){
       speed--;
     }
-    counter++;
+   counter++;
 
   }
+  
+  ArrayList<Ball> checkTouch(){
+    ArrayList<Ball> temp= new ArrayList<Ball>();
+    for(Ball b:balls){
+      if(this.isTouching(b)){
+        temp.add(b);
+      }
+    }
+    return temp;
+  }
+      
   
 
   void goin() {
