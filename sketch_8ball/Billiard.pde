@@ -32,8 +32,8 @@ class Billiard {
     if(w.getIn()){
     WhiteBall b = new WhiteBall(mousex, mousey, 255, 255, 255);
     w = b;
-    balls.add(b);
-    in = false;
+    balls.add(w);
+    w.setIn(false);
   }
   }
   
@@ -46,7 +46,7 @@ class Billiard {
   void removeBall(WhiteBall b) {
     in=true;
     BallsToDisplay.remove(b);
-    b.setIn();
+    b.setIn(true);
   }
   /* void replace(){
    if (in){

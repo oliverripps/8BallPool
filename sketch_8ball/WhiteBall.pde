@@ -28,8 +28,8 @@ class WhiteBall extends Ball {
     return y;
   }
 
-  void setIn() {
-    in = true;
+  void setIn(boolean b) {
+    in = b;
     replace();
   }
   boolean getIn(){
