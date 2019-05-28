@@ -4,7 +4,7 @@ class Billiard {
   int power;
   float whiteAngle;
   WhiteBall w;
-  ArrayList<Ball> BallsTodisplay = new ArrayList<Ball>();
+  ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
   int[] setPos = new int[]{870, 325, 
     896, 310, 896, 340, 
     922, 295, 922, 325, 922, 355, 
@@ -45,6 +45,7 @@ class Billiard {
   }
   void removeBall(WhiteBall b) {
     in=true;
+    BallsToDisplay.remove(b);
     b.setIn();
   }
   /* void replace(){
@@ -58,13 +59,13 @@ class Billiard {
     //SET UP BALLS
     for (int i=0; i<15; i++) {
       Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2]);
-      BallsTodisplay.add(ba);
+      BallsToDisplay.add(ba);
     }
     WhiteBall wb = new WhiteBall(330, 325, 255, 255, 255);
     w=wb;
     //white = wb;
     display();
-    return BallsTodisplay;
+    return BallsToDisplay;
   }
 
   void released() {
@@ -77,7 +78,7 @@ class Billiard {
     table.resize(1200, 650);
     background(table);
 
-    for (Ball i : BallsTodisplay) {
+    for (Ball i : BallsToDisplay) {
       i.display();
     }
     if (!in) {
