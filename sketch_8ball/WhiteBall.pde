@@ -131,7 +131,9 @@ class WhiteBall extends Ball {
     return temp;
   }
   
-
+  int getspeed(){
+    return speed;
+  }
   void goin() {
     speed=0;
     game.removeBall(this);

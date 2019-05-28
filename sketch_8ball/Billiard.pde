@@ -98,7 +98,9 @@ class Billiard {
     //
     rotate(angle); // <-- Need to figure out how to rotate stick
     fill(165, 42, 42);
+    if(w.getspeed()==0){
     rect(0, 0+power, 10, 500);
+    }
     popMatrix();
     if (power!=0) {
       if (power>200) {
@@ -121,5 +123,6 @@ class Billiard {
 
       rect(400, 20, -power, 20);
     }
+    }
   }
-}
+ 
