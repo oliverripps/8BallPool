@@ -88,7 +88,7 @@ class Billiard {
     pushMatrix();
     translate(w.getX(), w.getY());
     rotate(radians(-90));
-    float angle = atan2(mouseY-320, mouseX-330);
+    float angle = atan2(mouseY-w.getY(), mouseX-w.getX());
     whiteAngle = angle;
 
     //
