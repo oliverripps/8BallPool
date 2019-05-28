@@ -97,30 +97,38 @@ class WhiteBall extends Ball {
     x+=cos((float)(Math.toRadians(angle)))*speed;
     y-=sin((float)(Math.toRadians(angle)))*speed;
     if (bounce()) {
-      for (int i=0; i<0; i++) {
+      for (int i=0; i<3; i++) {
         x+=cos((float)(Math.toRadians(angle)))*speed;
         y+=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
-    /*if(broken==false){
-      if(x>800){
+     if(broken==false){
         for(Ball b:balls){
-          b.transferspeed((int)(Math.random()*2)+1);
+          b.setx((int)random(800)+100);
+          b.sety((int)random(500)+100);
       }
       broken=true;
-      }
-    }*/
- 
-     Ball touching;
-  if(anytouches()){
-    touching=checkTouch();
-    touching.transferspeed(speed*2);
     }
-     if(speed!=0 && counter%3==0){
+    
+   ArrayList<Ball> touching;
+    touching=checkTouch();
+    for(Ball i:touching){
+      i.transferspeed(speed*2);
+    }
+   if(speed!=0 && counter%3==0){
       speed--;
     }
-    counter++;
+   counter++;
 
+  }
+    ArrayList<Ball> checkTouch(){
+    ArrayList<Ball> temp= new ArrayList<Ball>();
+    for(Ball b:balls){
+      if(this.isTouching(b)){
+        temp.add(b);
+      }
+    }
+    return temp;
   }
   
 
