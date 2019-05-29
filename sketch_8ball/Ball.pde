@@ -97,25 +97,13 @@ class Ball implements isCollideable {
   void move() {
     ArrayList<Ball> touching;
     touching=checkTouch();
-    for(Ball i:touching){
-      //hit(); ADD IN LATER
-      i.transferspeed(speed/2);
-      i.transferangle(angle);
-      angle+=180;
+    for(Ball i:touching){//make not have duplicate  hits
+      hit(i,speed,angle);
     }
     x+=cos((float)(angle))*speed;
     y-=sin((float)(angle))*speed;
     if (bounce()) {
-      for (int i=0; i<3; i++) {
-        x+=cos((float)(angle))*speed;
-        y+=sin((float)(angle))*speed;
-      }
-    }
-
-    touching=checkTouch();
-    for(Ball i:touching){
-      i.transferspeed(speed/2);
-      angle+=180;
+      goforward();
     }
    if(speed!=0 && counter%3==0){
       speed--;
@@ -123,7 +111,13 @@ class Ball implements isCollideable {
    counter++;
 
   }
-  
+ void hit(Ball i,float speed, float angle){
+      i.transferspeed(speed/5);
+      i.transferangle(angle);
+      i.goforward();
+      speed=speed/2;
+      angle+=180;
+ }
  ArrayList<Ball> checkTouch(){
     ArrayList<Ball> temp= new ArrayList<Ball>();
     for(Ball b:balls){
@@ -132,8 +126,14 @@ class Ball implements isCollideable {
       }
     }
     return temp;
-  }
-      
+ }
+ void goforward(){
+   for (int i=0; i<3; i++) {
+        x+=cos((float)(angle))*speed;
+        y-=sin((float)(angle))*speed;
+      }
+ }
+   
   boolean transferspeed(float power) {
     speed+=power/2;
     return true;
