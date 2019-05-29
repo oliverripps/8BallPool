@@ -65,32 +65,11 @@ class Ball implements isCollideable {
       fill(255, 255, 255);
       circle(x, y, 30);
       fill(c1, c2, c3);
+      rect(x-12.5, y-7.5, 26, 15);
       stroke(c1, c2, c3);
-      rect(x-12, y-9, 24, 18);
-      
-      beginShape();
-      vertex(x-12,y+9);
-      vertex(x-12,y-9);
-     
-      vertex(x+(15*cos(radians(180))), y + (15*sin(radians(180))));
-      vertex(x+(15*cos(radians(135))), y + (15*sin(radians(135))));
-      vertex(x+(15*cos(radians(225))), y + (15*sin(radians(225))));
-      
-//vertex(x4,y4);
-// etc;
-      endShape();
-      
-      
-      beginShape();
-      vertex(x+12,y+9);
-      vertex(x+12,y-9);
-      vertex(x+(15*cos(radians(0))), y + (15*sin(radians(0))));
-      vertex(x+(15*cos(radians(-45))), y + (15*sin(radians(-45))));
-      vertex(x+(15*cos(radians(45))), y + (15*sin(radians(45))));
-//vertex(x4,y4);
-// etc;
-      endShape();
-      
+      polygon(x-8.7, y+.4, 5.4, 20);
+      polygon(x+8.9, y+.4, 5.4, 20);
+      rect(x-12, y-5, 24, 10);
       fill(255, 255, 255);
       circle(x, y, 13);
       fill(0,0,0);
@@ -98,6 +77,8 @@ class Ball implements isCollideable {
       text(number, x-4, y+5); 
     }
   }
+  
+  
   boolean bounce() {
     if (x<85) {
       if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
