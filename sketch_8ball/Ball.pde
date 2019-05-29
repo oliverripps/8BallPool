@@ -98,7 +98,9 @@ class Ball implements isCollideable {
     ArrayList<Ball> touching;
     touching=checkTouch();
     for(Ball i:touching){
+      //hit(); ADD IN LATER
       i.transferspeed(speed/2);
+      i.transferangle(angle);
       angle+=180;
     }
     x+=cos((float)(angle))*speed;
