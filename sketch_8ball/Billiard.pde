@@ -5,6 +5,7 @@ class Billiard {
   float whiteAngle;
   WhiteBall w;
   ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
+  
   int[] setPos = new int[]{870, 325, 
     896, 310, 896, 340, 
     922, 295, 922, 325, 922, 355, 

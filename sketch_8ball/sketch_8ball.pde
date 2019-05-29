@@ -19,6 +19,9 @@ void setup() {
   Billiard b = new Billiard();
   game=b;
   balls=game.setTable();
+  baggedStripe = new ArrayList<Ball>(8);
+  baggedSolid = new ArrayList<Ball>(8);
+  
   broken=false;
   over=false;
 }
