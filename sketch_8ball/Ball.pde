@@ -80,7 +80,9 @@ class Ball implements isCollideable {
     balls.remove(this);
   }
   boolean isTouching(Ball b){
-    return(x==b.getx() && y==b.gety());
+    boolean isTouching(Ball b){
+    return(x/35==b.getx()/35 && y/35==b.gety()/35);
+  }
   }
   
   boolean anytouches(){
@@ -93,6 +95,11 @@ class Ball implements isCollideable {
   }
   
   void move() {
+    ArrayList<Ball> touching;
+    touching=checkTouch();
+    for(Ball i:touching){
+      i.transferspeed(speed*2);
+    }
     x+=cos((float)(angle))*speed;
     y-=sin((float)(angle))*speed;
     if (bounce()) {
@@ -101,7 +108,7 @@ class Ball implements isCollideable {
         y+=sin((float)(angle))*speed;
       }
     }
-     ArrayList<Ball> touching;
+
     touching=checkTouch();
     for(Ball i:touching){
       i.transferspeed(speed*2);
