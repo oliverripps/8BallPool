@@ -42,6 +42,7 @@ class WhiteBall extends Ball {
   void replace() {
     fill(255, 255, 255);
     circle(mouseX, mouseY, 30);
+    
     //mouseClicked();
     //in=false;
     

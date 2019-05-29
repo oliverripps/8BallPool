@@ -32,7 +32,7 @@ class Billiard {
     if(w.getIn()){
     WhiteBall b = new WhiteBall(mousex, mousey, 255, 255, 255);
     w = b;
-    //balls.add(w);
+    balls.add(w);
     w.infalse();
     
   }
