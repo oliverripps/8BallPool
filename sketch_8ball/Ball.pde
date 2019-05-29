@@ -66,9 +66,31 @@ class Ball implements isCollideable {
       circle(x, y, 30);
       fill(c1, c2, c3);
       stroke(c1, c2, c3);
-      polygon(x-8.7, y+.4, 5.4, 20);
-      polygon(x+8.9, y+.4, 5.4, 20);
-      rect(x-12, y-5, 24, 10);
+      rect(x-12, y-9, 24, 18);
+      
+      beginShape();
+      vertex(x-12,y+9);
+      vertex(x-12,y-9);
+     
+      vertex(x+(15*cos(radians(180))), y + (15*sin(radians(180))));
+      vertex(x+(15*cos(radians(135))), y + (15*sin(radians(135))));
+      vertex(x+(15*cos(radians(225))), y + (15*sin(radians(225))));
+      
+//vertex(x4,y4);
+// etc;
+      endShape();
+      
+      
+      beginShape();
+      vertex(x+12,y+9);
+      vertex(x+12,y-9);
+      vertex(x+(15*cos(radians(0))), y + (15*sin(radians(0))));
+      vertex(x+(15*cos(radians(-45))), y + (15*sin(radians(-45))));
+      vertex(x+(15*cos(radians(45))), y + (15*sin(radians(45))));
+//vertex(x4,y4);
+// etc;
+      endShape();
+      
       fill(255, 255, 255);
       circle(x, y, 13);
       fill(0,0,0);
