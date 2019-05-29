@@ -4,8 +4,10 @@ class Ball implements isCollideable {
   int c1, c2, c3;
   float speed;
   float angle;
+  boolean solid;
+  int number;
 
-  Ball(int xx, int yy, int r, int g, int b) {
+  Ball(int xx, int yy, int r, int g, int b, boolean s, int num) {
     counter=0;
     x=xx;
     y=yy;
@@ -14,6 +16,8 @@ class Ball implements isCollideable {
     c3 = b;
     speed=0;
     angle=0;
+    solid = s;
+    number = num;
     //INSTANCE VARIABLES
   }
   Ball() {
@@ -34,8 +38,22 @@ class Ball implements isCollideable {
   }
   
   void display() {
+    if(solid){
     fill(c1, c2, c3);
     circle(x, y, 30);
+    ellipseMode(CENTER);  // Set ellipseMode to CENTEr
+    fill(255);  // Set fill to white
+    ellipse(x, y, 13, 13);  // Draw white ellipse using CENTER mode
+    fill(0, 0, 0);
+    textSize(12);
+    text(number, x-4, y+5); 
+    }
+    else{
+      fill(255, 255, 255);
+      circle(x, y, 30);
+      fill(c1, c2, c3);
+      rect(x-15, y-5, 30, 10);
+    }
   }
   boolean bounce() {
     if (x<85) {

@@ -33,7 +33,7 @@ class Billiard {
     WhiteBall b = new WhiteBall(mousex, mousey, 255, 255, 255);
     w = b;
     balls.add(w);
-    w.infalse();
+    w.setIn(false);
     
   }
   }
@@ -58,9 +58,11 @@ class Billiard {
 
   ArrayList<Ball> setTable() {
     //SET UP BALLS
+    boolean s = true;
     for (int i=0; i<15; i++) {
-      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2]);
+      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2);
       BallsToDisplay.add(ba);
+      s = !s;
     }
     WhiteBall wb = new WhiteBall(330, 325, 255, 255, 255);
     w=wb;
