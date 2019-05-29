@@ -94,7 +94,7 @@ class Billiard {
 
     //
     textSize(32);
-    text(""+degrees(whiteAngle), 10, 30); 
+    //text(""+degrees(whiteAngle), 10, 30); 
     fill(0, 102, 153);
     //
     rotate(angle); // <-- Need to figure out how to rotate stick
