@@ -120,6 +120,13 @@ class Ball implements isCollideable {
   void goin() {
     speed=0;
     balls.remove(this);
+    if (solid){
+      baggedSolid.add(this);
+    }
+    else{
+      baggedStripe.add(this);
+    }
+      
   }
   
   boolean isTouching(Ball b){

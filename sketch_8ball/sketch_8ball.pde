@@ -1,6 +1,8 @@
 Billiard game;
 boolean play;
 ArrayList<Ball> balls;
+ArrayList<Ball> baggedStripe;
+ArrayList<Ball> baggedSolid;
 boolean broken;
 boolean over;
 
