@@ -2,6 +2,7 @@ Billiard game;
 boolean play;
 ArrayList<Ball> balls;
 boolean broken;
+boolean over;
 
 
 
@@ -17,6 +18,7 @@ void setup() {
   game=b;
   balls=game.setTable();
   broken=false;
+  over=false;
 }
 
 void mouseClicked() {
@@ -34,11 +36,17 @@ void mouseReleased() {
   //startHit();
 }
 void draw() {
-  game.display();
+  if(balls.size()==0){
+    over=true;
+  }
+    
+  if(!over){
+    game.display();
   
   for (int x = balls.size()-1; x >= 0; x--){
     Ball i = balls.get(x);
     i.move();
   }
   game.moveW();
+  }
 }

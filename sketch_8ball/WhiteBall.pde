@@ -99,7 +99,7 @@ class WhiteBall extends Ball {
   }
   
   boolean isTouching(Ball b){
-    return(x/35==b.getx()/35 && y/35==b.gety()/35);
+    return(x/45==b.getx()/45 && y/45==b.gety()/45);
   }
   
   void move() {
@@ -107,7 +107,8 @@ class WhiteBall extends Ball {
     touching=checkTouch();
     for(Ball i:touching){
       //rect(50,50,40,40);
-      i.transferspeed(speed*2);
+      i.transferspeed(speed/2);
+      angle+=180;
     }
 
     x+=cos((float)(Math.toRadians(angle)))*speed;
@@ -129,7 +130,8 @@ class WhiteBall extends Ball {
     touching=checkTouch();
     for(Ball i:touching){
       //rect(50,50,40,40);
-      i.transferspeed(speed*2);
+      i.transferspeed(speed/2);
+      angle+=180;
     }
    if(speed!=0 && counter%3==0){
       speed--;
