@@ -106,9 +106,7 @@ class WhiteBall extends Ball {
     ArrayList<Ball> touching;
     touching=checkTouch();
     for(Ball i:touching){
-      //rect(50,50,40,40);
-      i.transferspeed(speed/2);
-      angle+=180;
+      hit(i,speed,angle);
     }
 
     x+=cos((float)(Math.toRadians(angle)))*speed;
@@ -125,13 +123,6 @@ class WhiteBall extends Ball {
           b.sety((int)random(500)+100);
       }
       broken=true;
-    }
-    
-    touching=checkTouch();
-    for(Ball i:touching){
-      //rect(50,50,40,40);
-      i.transferspeed(speed/2);
-      angle+=180;
     }
    if(speed!=0 && counter%3==0){
       speed--;
@@ -154,6 +145,7 @@ class WhiteBall extends Ball {
   }
   void goin() {
     speed=0;
+    angle=0;
     game.removeBall(this);
   }
  
