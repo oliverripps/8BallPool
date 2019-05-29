@@ -32,8 +32,9 @@ class Billiard {
     if(w.getIn()){
     WhiteBall b = new WhiteBall(mousex, mousey, 255, 255, 255);
     w = b;
-    balls.add(w);
-    w.setIn(false);
+    //balls.add(w);
+    w.infalse();
+    
   }
   }
   
@@ -70,7 +71,7 @@ class Billiard {
 
   void released() {
     w.transferangle(180 - degrees(whiteAngle)); 
-    w.transferspeed(power);
+    w.transferspeed(power/2);
     power=0;
   }
 
@@ -98,7 +99,7 @@ class Billiard {
     //
     rotate(angle); // <-- Need to figure out how to rotate stick
     fill(165, 42, 42);
-    if(w.getspeed()==0){
+    if(w.getspeed()==0 && w.getIn()==false){
     rect(0, 0+power, 10, 500);
     }
     popMatrix();

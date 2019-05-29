@@ -20,16 +20,19 @@ class WhiteBall extends Ball {
     //INSTANCE VARIABLES
   }
   
-  float getX(){
+  int getX(){
     return x;
   }
   
-  float getY(){
+  int getY(){
     return y;
   }
-
+  void infalse(){
+    in=false;
+  }
   void setIn(boolean b) {
     in = b;
+    tint(255,0);
     replace();
   }
   boolean getIn(){
@@ -40,6 +43,7 @@ class WhiteBall extends Ball {
     fill(255, 255, 255);
     circle(mouseX, mouseY, 30);
     //mouseClicked();
+    //in=false;
     
   }
 
@@ -93,11 +97,16 @@ class WhiteBall extends Ball {
     return false;
   }
   
+  boolean isTouching(Ball b){
+    return(x==b.getx() && y==b.gety());
+  }
+  
   void move() {
+    //in=false;
     x+=cos((float)(Math.toRadians(angle)))*speed;
     y-=sin((float)(Math.toRadians(angle)))*speed;
     if (bounce()) {
-      for (int i=0; i<3; i++) {
+      for (int i=0; i<0; i++) {
         x+=cos((float)(Math.toRadians(angle)))*speed;
         y+=sin((float)(Math.toRadians(angle)))*speed;
       }
@@ -124,7 +133,7 @@ class WhiteBall extends Ball {
     ArrayList<Ball> checkTouch(){
     ArrayList<Ball> temp= new ArrayList<Ball>();
     for(Ball b:balls){
-      if(this.isTouching(b)){
+      if(isTouching(b)){
         temp.add(b);
       }
     }

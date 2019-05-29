@@ -19,6 +19,13 @@ class Ball implements isCollideable {
   Ball() {
   }
   
+  int getx(){
+    return x;
+  }
+  int gety(){
+    return y;
+  }
+  
   void setx(int n){
     x=n;
   }
@@ -72,9 +79,8 @@ class Ball implements isCollideable {
     speed=0;
     balls.remove(this);
   }
-  boolean isTouching(Ball other){
-    
-    return this.x == other.x && this.y == other.y; //this is too narrow
+  boolean isTouching(Ball b){
+    return(x==b.getx() && y==b.gety());
   }
   
   boolean anytouches(){
@@ -110,7 +116,7 @@ class Ball implements isCollideable {
  ArrayList<Ball> checkTouch(){
     ArrayList<Ball> temp= new ArrayList<Ball>();
     for(Ball b:balls){
-      if(this.isTouching(b)){
+      if(isTouching(b)){
         temp.add(b);
       }
     }
