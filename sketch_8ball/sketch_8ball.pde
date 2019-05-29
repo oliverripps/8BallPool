@@ -7,7 +7,7 @@ boolean broken;
 
 interface isCollideable {
   boolean isTouching(Ball other);
-  boolean transferspeed(int i);
+  boolean transferspeed(float i);
   boolean transferangle(float f);
 }
 

@@ -2,7 +2,7 @@ class Ball implements isCollideable {
   int counter;
   int x, y;
   int c1, c2, c3;
-  int speed;
+  float speed;
   float angle;
 
   Ball(int xx, int yy, int r, int g, int b) {
@@ -123,7 +123,7 @@ class Ball implements isCollideable {
     return temp;
   }
       
-  boolean transferspeed(int power) {
+  boolean transferspeed(float power) {
     speed+=power/2;
     return true;
   }

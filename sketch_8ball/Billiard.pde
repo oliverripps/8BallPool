@@ -1,7 +1,7 @@
 class Billiard {
   Boolean in;
   PImage table;
-  int power;
+  float power;
   float whiteAngle;
   WhiteBall w;
   ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
@@ -71,7 +71,7 @@ class Billiard {
 
   void released() {
     w.transferangle(180 - degrees(whiteAngle)); 
-    w.transferspeed(power/2);
+    w.transferspeed(power*.8);
     power=0;
   }
 

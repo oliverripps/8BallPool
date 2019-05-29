@@ -1,7 +1,7 @@
 class WhiteBall extends Ball {
   int x, y;
   int c1, c2, c3;
-  int speed;
+  float speed;
   float angle;
   boolean in;
   int counter;
@@ -32,7 +32,7 @@ class WhiteBall extends Ball {
   }
   void setIn(boolean b) {
     in = b;
-    tint(255,0);
+    //tint(255,0);
     replace();
   }
   boolean getIn(){
@@ -47,7 +47,7 @@ class WhiteBall extends Ball {
     
   }
 
-  boolean transferspeed(int power) {
+  boolean transferspeed(float power) {
     speed+=power/4;
     return true;
   }
@@ -140,7 +140,7 @@ class WhiteBall extends Ball {
     return temp;
   }
   
-  int getspeed(){
+  float getspeed(){
     return speed;
   }
   void goin() {
