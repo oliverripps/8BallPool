@@ -5,6 +5,7 @@ class WhiteBall extends Ball {
   float angle;
   boolean in;
   int counter;
+  boolean isrecent;
 
 
   WhiteBall(int xx, int yy, int r, int g, int b) {
@@ -17,6 +18,7 @@ class WhiteBall extends Ball {
     speed=0;
     angle=0;
     in = false;
+    isrecent=false;
     //INSTANCE VARIABLES
   }
   
@@ -104,11 +106,19 @@ class WhiteBall extends Ball {
   
   void move() {
     ArrayList<Ball> touching;
-    touching=checkTouch();
+    if(isrecent){
+      touching=null;
+    }
+    if(!isrecent){
+      touching=checkTouch();
     if(touching.size()!=0){
       for(Ball i:touching){//make not have duplicate  hits
         hit(i,speed,angle);
+        angle+=180;//FIXX
+        angle=angle%360;
+        isrecent=true;
       }
+    }
     }
 
     x+=cos((float)(Math.toRadians(angle)))*speed;
@@ -145,13 +155,13 @@ class WhiteBall extends Ball {
   float getspeed(){
     return speed;
   }
-   void hit(Ball i,float speed, float angle){
-      i.transferspeed(speed);
+   
+  void hit(Ball i,float speed, float angle){
+      i.transferspeed(speed*2);
       i.transferangle(angle);
-      //i.goforward();
-      speed-=speed/2;
-      angle+=180;
-      angle=angle%360;
+      //CHECK IF CLOSE TO EDGE{
+      i.goforward();
+      speed=speed/4;
       
  }
   void goin() {

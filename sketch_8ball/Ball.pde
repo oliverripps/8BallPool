@@ -145,18 +145,18 @@ class Ball implements isCollideable {
   
   void move() {
     ArrayList<Ball> touching;
-    touching=checkTouch();
+    /*touching=checkTouch();
     if(touching.size()!=0){
       for(Ball i:touching){//make not have duplicate  hits
         hit(i,speed,angle);
       }
-    }
+    }*/
     x+=cos((float)(angle))*speed;
     y-=sin((float)(angle))*speed;
     if (bounce()) {
       goforward();
     }
-   if(speed>0 && counter%2==0){
+   if(speed>0 && counter%3==0){
       speed--;
       if(speed<0){
         speed=0;
