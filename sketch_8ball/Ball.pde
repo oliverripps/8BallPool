@@ -22,44 +22,45 @@ class Ball implements isCollideable {
   }
   Ball() {
   }
-
-  int getx() {
+  
+  int getx(){
     return x;
   }
-  int gety() {
+  int gety(){
     return y;
   }
-
-  void setx(int n) {
+  
+  void setx(int n){
     x=n;
   }
-  void sety(int n) {
+  void sety(int n){
     y=n;
   }
-
+  
   void polygon(float x, float y, float radius, int npoints) {  //Copied from processing.org
-    float angle = TWO_PI / npoints;
-    beginShape();
-    for (float a = 0; a < TWO_PI; a += angle) {
-      float sx = x + cos(a) * radius;
-      float sy = y + sin(a) * radius;
-      vertex(sx, sy);
-    }
-    endShape(CLOSE);
+  float angle = TWO_PI / npoints;
+  beginShape();
+  for (float a = 0; a < TWO_PI; a += angle) {
+    float sx = x + cos(a) * radius;
+    float sy = y + sin(a) * radius;
+    vertex(sx, sy);
   }
-
+  endShape(CLOSE);
+}
+  
   void display() {
-    if (solid) {
-      stroke(0, 0, 0);
-      fill(c1, c2, c3);
-      circle(x, y, 30);
-      ellipseMode(CENTER);  // Set ellipseMode to CENTER
-      fill(255);  // Set fill to white
-      circle(x, y, 13);  // Draw white ellipse using CENTER mode
-      fill(0, 0, 0);
-      textSize(12);
-      text(number, x-4, y+5);
-    } else {
+    if(solid){
+    stroke(0, 0, 0);
+    fill(c1, c2, c3);
+    circle(x, y, 30);
+    ellipseMode(CENTER);  // Set ellipseMode to CENTER
+    fill(255);  // Set fill to white
+    circle(x, y, 13);  // Draw white ellipse using CENTER mode
+    fill(0, 0, 0);
+    textSize(12);
+    text(number, x-4, y+5); 
+    }
+    else{
       stroke(0, 0, 0);
       fill(255, 255, 255);
       circle(x, y, 30);
@@ -71,16 +72,13 @@ class Ball implements isCollideable {
       rect(x-12, y-5, 24, 10);
       fill(255, 255, 255);
       circle(x, y, 13);
-      fill(0, 0, 0);
+      fill(0,0,0);
       textSize(12);
-      text(number, x-4, y+5);
+      text(number, x-4, y+5); 
     }
-    text(speed, x, y);
-    text(angle, x+10, y-20);
   }
-
-
-
+  
+  
   boolean bounce() {
     if (x<85) {
       if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
@@ -118,78 +116,79 @@ class Ball implements isCollideable {
     }
     return false;
   }
-
+  
   void goin() {
     speed=0;
     balls.remove(this);
-    if (solid) {
+    if (solid){
       baggedSolid.add(this);
-    } else {
+    }
+    else{
       baggedStripe.add(this);
     }
+      
   }
-
-  boolean isTouching(Ball b) {
+  
+  boolean isTouching(Ball b){
     return(x/45==b.getx()/45 && y/45==b.gety()/45);
   }
 
-
-  boolean anytouches() {
-    for (Ball b : balls) {
-      if (this.isTouching(b)) {
+  
+  boolean anytouches(){
+    for(Ball b:balls){
+      if(this.isTouching(b)){
         return true;
       }
-    }
+      }
     return false;
   }
-
+  
   void move() {
     ArrayList<Ball> touching;
     /*touching=checkTouch();
-     if(touching.size()!=0){
-     for(Ball i:touching){//make not have duplicate  hits
-     hit(i,speed,angle);
-     }
-     }*/
-    x+=cos((float)(Math.toRadians(angle)))*speed;
-    y-=sin((float)(Math.toRadians(angle)))*speed;
+    if(touching.size()!=0){
+      for(Ball i:touching){//make not have duplicate  hits
+        hit(i,speed,angle);
+      }
+    }*/
+    x+=cos((float)(angle))*speed;
+    y-=sin((float)(angle))*speed;
     if (bounce()) {
       goforward();
     }
-    if (speed>0) {
-      speed-=.3;
-      if (speed<0) {
+   if(speed>0 && counter%3==0){
+      speed--;
+      if(speed<0){
         speed=0;
       }
     }
+   counter++;
 
   }
-  
-  
-  void hit(Ball i, float speed, float angle) {
-    i.transferspeed(speed/5);
-    i.transferangle(angle);
-    i.goforward();
-    //speed-=speed/5;
-    angle+=180;
-  }
-  ArrayList<Ball> checkTouch() {
+ void hit(Ball i,float speed, float angle){
+      i.transferspeed(speed/5);
+      i.transferangle(angle);
+      i.goforward();
+      //speed-=speed/5;
+      angle+=180;
+ }
+ ArrayList<Ball> checkTouch(){
     ArrayList<Ball> temp= new ArrayList<Ball>();
     /*for(Ball b:balls){
-     if(isTouching(b)){
-     temp.add(b);
-     }
-     }*/
+      if(isTouching(b)){
+        temp.add(b);
+      }
+    }*/
     return temp;
-  }
-
-  void goforward() {
-    for (int i=0; i<3; i++) {
-      x+=cos((float)(angle))*speed;
-      y-=sin((float)(angle))*speed;
-    }
-  }
-
+ }
+ 
+ void goforward(){
+   for (int i=0; i<3; i++) {
+        x+=cos((float)(angle))*speed;
+        y-=sin((float)(angle))*speed;
+      }
+ }
+   
   boolean transferspeed(float power) {
     speed+=power/2;
     return true;

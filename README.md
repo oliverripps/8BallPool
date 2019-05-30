@@ -36,8 +36,9 @@ Friday May 24th-Monday May 27th
   -Oliver: Working on colliding bouncing on on walls
 
 Tuesday May 28th:
-  -Oliver:Getting balls to react with each other
-  -Kevin:
+  -Oliver: Getting balls to react with each other
+  -Kevin: Made it so that once a ball is put into a hole, you can replace it onto the board and set the new ball to react the same way.
+  
 Wednesday May 29th:
   -Kevin: Color differentiation between stripes, and solids.
   -Kevin: Created "bags" for storing balls when put into hole (for future usage when displaying)
