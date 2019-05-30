@@ -145,6 +145,15 @@ class WhiteBall extends Ball {
   float getspeed(){
     return speed;
   }
+   void hit(Ball i,float speed, float angle){
+      i.transferspeed(speed);
+      i.transferangle(angle);
+      //i.goforward();
+      speed-=speed/2;
+      angle+=180;
+      angle=angle%360;
+      
+ }
   void goin() {
     speed=0;
     angle=0;

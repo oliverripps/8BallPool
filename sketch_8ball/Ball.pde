@@ -156,8 +156,11 @@ class Ball implements isCollideable {
     if (bounce()) {
       goforward();
     }
-   if(speed>0 && counter%3==0){
+   if(speed>0 && counter%2==0){
       speed--;
+      if(speed<0){
+        speed=0;
+      }
     }
    counter++;
 
@@ -171,11 +174,11 @@ class Ball implements isCollideable {
  }
  ArrayList<Ball> checkTouch(){
     ArrayList<Ball> temp= new ArrayList<Ball>();
-    for(Ball b:balls){
+    /*for(Ball b:balls){
       if(isTouching(b)){
         temp.add(b);
       }
-    }
+    }*/
     return temp;
  }
  
