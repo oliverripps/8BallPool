@@ -40,18 +40,30 @@ void mouseReleased() {
   game.released();
   //startHit();
 }
-void draw() {
-  if(balls.size()==0){
-    over=true;
-  }
-    
-  if(!over){
-    game.display();
-  
-  for (int x = balls.size()-1; x >= 0; x--){
+ void keyPressed(){
+   for (int x = balls.size()-1; x >= 0; x--){
     Ball i = balls.get(x);
     i.move();
   }
   game.moveW();
   }
+ 
+   
+void draw() {
+  if(balls.size()==0){
+    over=true;
+  }
+  
+   
+    
+  if(!over){
+    game.display();
+  /*for (int x = balls.size()-1; x >= 0; x--){
+    Ball i = balls.get(x);
+    i.move();
+  }
+  game.moveW();
+  }*/
+ 
+}
 }

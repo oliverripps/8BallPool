@@ -59,46 +59,6 @@ class WhiteBall extends Ball {
     angle = ang;
     return true;
   }
-
-
-
-  boolean bounce() {
-    if (x<85) {
-      if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
-        goin();
-      } else {
-        angle=180-angle;
-      }
-      return true;
-    }
-    if (x>1105) {
-      if ((y<88) || (y>559)) {
-        goin();
-      } else {
-        angle=180-angle;
-        //angle=(int)(Math.random()*180)+90;
-        //CODE INSPIRED BY KAITLYN DUONG^^^^
-      }
-      return true;
-    }
-    if (y<72) {
-      if (x>578 && x<618) {
-        goin();
-      } else {
-        angle=360-angle;
-      }
-      return true;
-    }
-    if (y>560) {
-      if (x>578 && x<618) {
-        goin();
-      } else {
-        angle=360-angle;
-      }
-      return true;
-    }
-    return false;
-  }
   
   boolean isTouching(Ball b){
     return(x/45==b.getx()/45 && y/45==b.gety()/45);
@@ -108,14 +68,16 @@ class WhiteBall extends Ball {
     ArrayList<Ball> touching;
     if(isrecent){
       touching=null;
+      isrecent=false;
     }
     if(!isrecent){
-      touching=checkTouch();
+    touching=checkTouch();
     if(touching.size()!=0){
       for(Ball i:touching){//make not have duplicate  hits
         hit(i,speed,angle);
         angle+=180;//FIXX
         angle=angle%360;
+        i.goforward();
         isrecent=true;
       }
     }
@@ -136,10 +98,10 @@ class WhiteBall extends Ball {
       }
       broken=true;
     }
-   if(speed>0 && counter%3==0){
-      speed--;
+   if(speed>0){
+      speed-=.3;
     }
-   counter++;
+
 
   }
     ArrayList<Ball> checkTouch(){
@@ -160,7 +122,6 @@ class WhiteBall extends Ball {
       i.transferspeed(speed*2);
       i.transferangle(angle);
       //CHECK IF CLOSE TO EDGE{
-      i.goforward();
       speed=speed/4;
       
  }
@@ -174,5 +135,7 @@ class WhiteBall extends Ball {
   void display() {
     fill(c1, c2, c3);
     circle(x, y, 30);
+    text(speed,x,y);
+    text(angle,x+10,y-20);
   }
 }
