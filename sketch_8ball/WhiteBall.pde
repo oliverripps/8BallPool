@@ -105,16 +105,18 @@ class WhiteBall extends Ball {
   void move() {
     ArrayList<Ball> touching;
     touching=checkTouch();
-    for(Ball i:touching){
-      hit(i,speed,angle);
+    if(touching.size()!=0){
+      for(Ball i:touching){//make not have duplicate  hits
+        hit(i,speed,angle);
+      }
     }
 
     x+=cos((float)(Math.toRadians(angle)))*speed;
     y-=sin((float)(Math.toRadians(angle)))*speed;
     if (bounce()) {
-      for (int i=0; i<0; i++) {
+      for (int i=0; i<3; i++) {
         x+=cos((float)(Math.toRadians(angle)))*speed;
-        y+=sin((float)(Math.toRadians(angle)))*speed;
+        y-=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
      if(broken==false){
@@ -124,7 +126,7 @@ class WhiteBall extends Ball {
       }
       broken=true;
     }
-   if(speed!=0 && counter%3==0){
+   if(speed>0 && counter%3==0){
       speed--;
     }
    counter++;
