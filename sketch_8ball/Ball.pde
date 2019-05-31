@@ -1,11 +1,14 @@
 class Ball implements isCollideable {
   int counter;
   int x, y;
+  boolean isblack;
   int c1, c2, c3;
   float speed;
   float angle;
   boolean solid;
   int number;
+  boolean in;
+  
 
   Ball(int xx, int yy, int r, int g, int b, boolean s, int num) {
     counter=0;
@@ -18,6 +21,12 @@ class Ball implements isCollideable {
     angle=0;
     solid = s;
     number = num;
+    /*if(c1==0  && c2==0 && c3==0){
+      isblack=true;
+    }
+    else{
+      isblack=false;
+    }*/
     //INSTANCE VARIABLES
   }
   Ball() {
@@ -29,12 +38,19 @@ class Ball implements isCollideable {
   int gety() {
     return y;
   }
-
+  
+  boolean isblack(){
+    return isblack;
+  }
   void setx(int n) {
     x=n;
   }
   void sety(int n) {
     y=n;
+  }
+  
+  float getspeed(){
+    return speed;
   }
 
   void polygon(float x, float y, float radius, int npoints) {  //Copied from processing.org
@@ -80,7 +96,9 @@ class Ball implements isCollideable {
   }
 
 
-
+  boolean isin(){
+    return in;
+  }
   boolean bounce() {
     if (x<85) {
       if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
@@ -127,6 +145,7 @@ class Ball implements isCollideable {
     } else {
       baggedStripe.add(this);
     }
+    in=true;
   }
 
   boolean isTouching(Ball b) {
