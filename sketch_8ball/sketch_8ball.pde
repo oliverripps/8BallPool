@@ -29,6 +29,25 @@ ArrayList<Ball> getTouching(Ball b){
   return ret;
 }
 
+void collideballs(){
+  ArrayList<Ball> total = new ArrayList<Ball>();
+  ArrayList<Ball> moving = new ArrayList<Ball>();
+  for(int i=0;i<moving.size();i++){
+    total=addunique(getTouching(moving.get(i)),total);
+  }
+}
+
+ArrayList<Ball> addunique(ArrayList<Ball> toadd,ArrayList<Ball> total){
+  for(Ball b:toadd){
+    if(!total.contains(b)){
+      total.add(b);
+    }
+  }
+  return total;
+}
+
+
+
   
       
 interface isCollideable {
