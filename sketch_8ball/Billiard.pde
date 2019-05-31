@@ -85,12 +85,12 @@ class Billiard {
     power=0;
   }
   
-  boolean eightin(){
+  /*boolean eightin(){
     return eight.isin();
-  }
+  }*/
   
   void display() {
-    if(!eightin()){
+    //if(!eightin()){
     table.resize(1200, 650);
     background(table);
 
@@ -139,7 +139,7 @@ class Billiard {
 
       rect(400, 20, -power, 20);
     }
-    }
+    
     /*else{
       over=true;
     }*/

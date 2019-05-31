@@ -1,13 +1,13 @@
 class Ball implements isCollideable {
   int counter;
   int x, y;
-  boolean isblack;
+  //boolean isblack;
   int c1, c2, c3;
   float speed;
   float angle;
   boolean solid;
   int number;
-  boolean in;
+  //boolean in;
   
 
   Ball(int xx, int yy, int r, int g, int b, boolean s, int num) {
@@ -39,9 +39,9 @@ class Ball implements isCollideable {
     return y;
   }
   
-  boolean isblack(){
+  /*boolean isblack(){
     return isblack;
-  }
+  }*/
   void setx(int n) {
     x=n;
   }
@@ -96,9 +96,9 @@ class Ball implements isCollideable {
   }
 
 
-  boolean isin(){
+  /*boolean isin(){
     return in;
-  }
+  }*/
   boolean bounce() {
     if (x<85) {
       if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
@@ -145,7 +145,7 @@ class Ball implements isCollideable {
     } else {
       baggedStripe.add(this);
     }
-    in=true;
+    //in=true;
   }
 
   boolean isTouching(Ball b) {
