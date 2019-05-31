@@ -61,7 +61,7 @@ class WhiteBall extends Ball {
   }
   
   boolean isTouching(Ball b){
-    return(x/45==b.getx()/45 && y/45==b.gety()/45);
+    return(x/60==b.getx()/60 && y/60==b.gety()/60);
   }
   boolean bounce() {
     if (x<85) {

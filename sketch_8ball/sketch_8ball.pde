@@ -46,7 +46,7 @@ void mouseReleased() {
     i.move();
   }
   game.moveW();
-  }
+  }*/
  
    
 void draw() {
@@ -58,12 +58,11 @@ void draw() {
     
   if(!over){
     game.display();
-  /*for (int x = balls.size()-1; x >= 0; x--){
+  for (int x = balls.size()-1; x >= 0; x--){
     Ball i = balls.get(x);
     i.move();
   }
   game.moveW();
-  }*/
+  }
  
-}
 }

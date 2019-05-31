@@ -75,8 +75,8 @@ class Ball implements isCollideable {
       textSize(12);
       text(number, x-4, y+5);
     }
-    text(speed, x, y);
-    text(angle, x+10, y-20);
+    text(speed, x+20, y);
+    text(angle, x+20, y-20);
   }
 
 
@@ -130,7 +130,7 @@ class Ball implements isCollideable {
   }
 
   boolean isTouching(Ball b) {
-    return(x/45==b.getx()/45 && y/45==b.gety()/45);
+    return(x/60==b.getx()/60 && y/60==b.gety()/60);
   }
 
 
@@ -155,6 +155,18 @@ class Ball implements isCollideable {
     y-=sin((float)(Math.toRadians(angle)))*speed;
     if (bounce()) {
       goforward();
+    }
+    if(x<80){
+      x=90;
+    }
+    if(x>1110){
+      x=1100;
+    }
+    if(y<68){
+      y=75;
+    }
+    if(y>565){
+      y=555;
     }
     if (speed>0) {
       speed-=.3;
