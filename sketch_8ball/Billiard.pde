@@ -100,10 +100,14 @@ class Billiard {
     //text(""+degrees(whiteAngle), 10, 30); 
     fill(0, 102, 153);
     //
-    rotate(angle); // <-- Need to figure out how to rotate stick
+    rotate(angle); //
     fill(165, 42, 42);
     if(w.getspeed()==0 && w.getIn()==false){
-    rect(0, 0+power, 10, 500);
+    rect(-5.5, power, 10, 500);
+    
+    //rotate(angle);
+    stroke(255);
+    line(0, 0, 0, -90); 
     }
     popMatrix();
     if (power!=0) {
