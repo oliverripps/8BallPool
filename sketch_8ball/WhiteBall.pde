@@ -136,10 +136,7 @@ class WhiteBall extends Ball {
       }
     }
      if(broken==false){
-        for(Ball b:balls){
-          b.setx((int)random(800)+100);
-          b.sety((int)random(500)+100);
-      }
+        breakup();
       broken=true;
     }
    if(speed>0){
@@ -172,6 +169,23 @@ class WhiteBall extends Ball {
       //CHECK IF CLOSE TO EDGE{
       speed=speed/4;
       
+ }
+ void breakup(){
+ for(int i=0;i<balls.size();i++){
+          balls.get(i).setx((int)random(1020)+85);
+          balls.get(i).sety((int)random(488)+72);
+          /*for(int l=0;l<balls.size();l++){
+            if(l==i && l!=balls.size()-1){
+              l++;
+          }
+          else{
+            while(balls.get(i).isTouching(balls.get(l))){
+              balls.get(i).setx(balls.get(i).getx()+(int)(random(4)-2));
+              balls.get(i).sety(balls.get(i).gety()+(int)(random(4)-2));
+      }
+          }
+          }*/
+ }
  }
  
  
