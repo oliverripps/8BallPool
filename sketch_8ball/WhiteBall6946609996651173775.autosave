@@ -49,7 +49,11 @@ class WhiteBall extends Ball {
     //in=false;
     
   }
-
+  
+  boolean bounce(){
+    return(super.bounce());
+  }
+  
   boolean transferspeed(float power) {
     speed+=power/4;
     return true;
@@ -61,49 +65,16 @@ class WhiteBall extends Ball {
   }
   
   boolean isTouching(Ball b){
-    return(x/60==b.getx()/60 && y/60==b.gety()/60);
+    return(x/45==b.getx()/45 && y/45==b.gety()/45);
   }
-  boolean bounce() {
-    if (x<85) {
-      if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
-        goin();
-      } else {
-        angle=180-angle;
-      }
-      return true;
-    }
-    if (x>1105) {
-      if ((y<88) || (y>559)) {
-        goin();
-      } else {
-        angle=180-angle;
-        //angle=(int)(Math.random()*180)+90;
-        //CODE INSPIRED BY KAITLYN DUONG^^^^
-      }
-      return true;
-    }
-    if (y<72) {
-      if (x>578 && x<618) {
-        goin();
-      } else {
-        angle=360-angle;
-      }
-      return true;
-    }
-    if (y>560) {
-      if (x>578 && x<618) {
-        goin();
-      } else {
-        angle=360-angle;
-      }
-      return true;
-    }
-    return false;
-  }
-
-
-  void move() {
+  
+  void move(){
     ArrayList<Ball> touching;
+    super.move();
+    if (bounce()) {
+      goforward();
+    }
+ 
     if(isrecent){
       touching=null;
       isrecent=false;
@@ -120,15 +91,6 @@ class WhiteBall extends Ball {
       }
     }
     }
-
-    x+=cos((float)(Math.toRadians(angle)))*speed;
-    y-=sin((float)(Math.toRadians(angle)))*speed;
-    if (bounce()) {
-      for (int i=0; i<3; i++) {
-        x+=cos((float)(Math.toRadians(angle)))*speed;
-        y-=sin((float)(Math.toRadians(angle)))*speed;
-      }
-    }
      if(broken==false){
         for(Ball b:balls){
           b.setx((int)random(800)+100);
@@ -136,13 +98,12 @@ class WhiteBall extends Ball {
       }
       broken=true;
     }
-   if(speed>0){
+    if (speed>0) {
       speed-=.3;
-      if(speed<0){
+      if (speed<0) {
         speed=0;
+      }
     }
-   }
-    
 
 
   }

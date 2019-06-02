@@ -5,6 +5,7 @@ class Billiard {
   float whiteAngle;
   WhiteBall w;
   ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
+  Ball eight;
   
   int[] setPos = new int[]{870, 325, 
     896, 310, 896, 340, 
@@ -69,7 +70,13 @@ class Billiard {
     w=wb;
     //white = wb;
     display();
+    /*for(Ball b:balls){
+      if(b.isblack()){
+        eight=b;
+      }
+    }*/
     return BallsToDisplay;
+        
   }
 
   void released() {
@@ -77,8 +84,13 @@ class Billiard {
     w.transferspeed(power*.8);
     power=0;
   }
-
+  
+  /*boolean eightin(){
+    return eight.isin();
+  }*/
+  
   void display() {
+    //if(!eightin()){
     table.resize(1200, 650);
     background(table);
 
@@ -131,6 +143,10 @@ class Billiard {
 
       rect(400, 20, -power, 20);
     }
-    }
+    
+    /*else{
+      over=true;
+    }*/
+  }
   }
  
