@@ -119,7 +119,7 @@ class Billiard {
     
     //rotate(angle);
     stroke(255);
-    line(0, 0, 0, -90); 
+    line(0, 0, 0, -200); 
     }
     popMatrix();
     if (power!=0) {
