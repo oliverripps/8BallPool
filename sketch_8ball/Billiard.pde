@@ -63,7 +63,7 @@ class Billiard {
     //SET UP BALLS
     boolean s = true;
     for (int i=0; i<15; i++) {
-      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2);
+      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2, i);
       BallsToDisplay.add(ba);
       s = !s;
     }

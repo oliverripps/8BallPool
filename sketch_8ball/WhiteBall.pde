@@ -7,7 +7,6 @@ class WhiteBall extends Ball {
   int counter;
   int isrecent;
 
-
   WhiteBall(int xx, int yy, int r, int g, int b) {
     counter=0;
     x=xx;
@@ -21,15 +20,15 @@ class WhiteBall extends Ball {
     isrecent=0;
     //INSTANCE VARIABLES
   }
-  
-  int getX(){
+
+  int getX() {
     return x;
   }
-  
-  int getY(){
+
+  int getY() {
     return y;
   }
-  void infalse(){
+  void infalse() {
     in=false;
   }
   void setIn(boolean b) {
@@ -37,17 +36,16 @@ class WhiteBall extends Ball {
     //tint(255,0);
     replace();
   }
-  boolean getIn(){
+  boolean getIn() {
     return in;
   }
-  
+
   void replace() {
     fill(255, 255, 255);
     circle(mouseX, mouseY, 30);
-    
+
     //mouseClicked();
     //in=false;
-    
   }
 
   boolean transferspeed(float power) {
@@ -59,8 +57,8 @@ class WhiteBall extends Ball {
     angle = ang;
     return true;
   }
-  
-  boolean isTouching(Ball b){
+
+  boolean isTouching(Ball b) {
     return(x/60==b.getx()/60 && y/60==b.gety()/60);
   }
   boolean bounce() {
@@ -104,28 +102,28 @@ class WhiteBall extends Ball {
 
   void move() {
     ArrayList<Ball> touching;
-    if(isrecent>0){
+    if (isrecent>0) {
       touching=null;
       isrecent++;
-      if(isrecent>3){
+      if (isrecent>3) {
         isrecent=0;
-    }
-    }
-    if(isrecent==0){
-    touching=checkTouch();
-    if(touching.size()!=0){
-      for(Ball i:touching){//make not have duplicate  hits
-        float newangle = getAngle(i);
-        hit(i,speed,newangle);
-        angle=((newangle-180)+angle)/2;//FIXX
-        angle=angle%360;
-        i.goforward();
-        goforward();
-        isrecent=1;
       }
     }
+    if (isrecent==0) {
+      touching=checkTouch();
+      if (touching.size()!=0) {
+        for (Ball i : touching) {//make not have duplicate  hits
+          float newangle = getAngle(i);
+          hit(i, speed, newangle);
+          angle=((newangle-180)+angle)/2;//FIXX
+          angle=angle%360;
+          i.goforward();
+          goforward();
+          isrecent=1;
+        }
+      }
     }
-   
+
 
     x+=cos((float)(Math.toRadians(angle)))*speed;
     y-=sin((float)(Math.toRadians(angle)))*speed;
@@ -135,80 +133,76 @@ class WhiteBall extends Ball {
         y-=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
-     if(broken==false && x>860){
-        breakup();
+    if (broken==false && x>860) {
+      breakup();
       broken=true;
     }
-   if(speed>0){
+    if (speed>0) {
       speed-=.3;
-      if(speed<0){
+      if (speed<0) {
         speed=0;
+      }
     }
-   }
-    
-
-
   }
-    ArrayList<Ball> checkTouch(){
+  ArrayList<Ball> checkTouch() {
     ArrayList<Ball> temp= new ArrayList<Ball>();
-    for(Ball b:balls){
-      if(isTouching(b)){
+    for (Ball b : balls) {
+      if (isTouching(b)) {
         temp.add(b);
       }
     }
     return temp;
   }
-  
-  float getspeed(){
+
+  float getspeed() {
     return speed;
   }
-   
-  void hit(Ball i,float speed, float angle){
-      i.transferspeed(speed*2);
-      i.transferangle(angle);
-      //CHECK IF CLOSE TO EDGE{
-      speed=speed/4;
-      
- }
- void breakup(){
- for(int i=0;i<balls.size();i++){
-          balls.get(i).setx((int)random(1020)+85);
-          balls.get(i).sety((int)random(488)+72);
-          /*for(int l=0;l<balls.size();l++){
-            if(l==i && l!=balls.size()-1){
-              l++;
-          }
-          else{
-            while(balls.get(i).isTouching(balls.get(l))){
-              balls.get(i).setx(balls.get(i).getx()+(int)(random(4)-2));
-              balls.get(i).sety(balls.get(i).gety()+(int)(random(4)-2));
-      }
-          }
-          }*/
- }
- }
- 
- 
- float getAngle(Ball t) {
+
+  void hit(Ball i, float speed, float angle) {
+    i.transferspeed(speed*2);
+    i.transferangle(angle);
+    //CHECK IF CLOSE TO EDGE{
+    speed=speed/4;
+  }
+  void breakup() {
+    for (int i=0; i<balls.size(); i++) {
+      balls.get(i).setx((int)random(1020)+85);
+      balls.get(i).sety((int)random(488)+72);
+      /*for(int l=0;l<balls.size();l++){
+       if(l==i && l!=balls.size()-1){
+       l++;
+       }
+       else{
+       while(balls.get(i).isTouching(balls.get(l))){
+       balls.get(i).setx(balls.get(i).getx()+(int)(random(4)-2));
+       balls.get(i).sety(balls.get(i).gety()+(int)(random(4)-2));
+       }
+       }
+       }*/
+    }
+  }
+
+
+  float getAngle(Ball t) {
     float angle = (float) Math.toDegrees(Math.atan2(t.gety() - y, t.getx() - x));
 
-    if(angle < 0){
-        angle += 360;
+    if (angle < 0) {
+      angle += 360;
     }
 
     return angle;
-}
+  }
   void goin() {
     speed=0;
     angle=0;
     game.removeBall(this);
   }
- 
-  
+
+
   void display() {
     fill(c1, c2, c3);
     circle(x, y, 30);
     /*text(speed,x,y);
-    text(angle,x+10,y-20);*/
+     text(angle,x+10,y-20);*/
   }
 }
