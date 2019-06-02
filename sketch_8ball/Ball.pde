@@ -91,8 +91,8 @@ class Ball implements isCollideable {
       textSize(12);
       text(number, x-4, y+5);
     }
-    text(speed, x+20, y);
-    text(angle, x+20, y-20);
+    /*text(speed, x+20, y);
+    text(angle, x+20, y-20);*/
   }
 
 

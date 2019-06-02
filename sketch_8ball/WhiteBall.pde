@@ -208,7 +208,7 @@ class WhiteBall extends Ball {
   void display() {
     fill(c1, c2, c3);
     circle(x, y, 30);
-    text(speed,x,y);
-    text(angle,x+10,y-20);
+    /*text(speed,x,y);
+    text(angle,x+10,y-20);*/
   }
 }
