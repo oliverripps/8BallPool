@@ -112,14 +112,17 @@ class WhiteBall extends Ball {
     touching=checkTouch();
     if(touching.size()!=0){
       for(Ball i:touching){//make not have duplicate  hits
-        hit(i,speed,angle);
-        angle+=180;//FIXX
+        float newangle = getAngle(i);
+        hit(i,speed,newangle);
+        angle-=newangle;//FIXX
         angle=angle%360;
         i.goforward();
+        goforward();
         isrecent=true;
       }
     }
     }
+   
 
     x+=cos((float)(Math.toRadians(angle)))*speed;
     y-=sin((float)(Math.toRadians(angle)))*speed;
@@ -167,6 +170,17 @@ class WhiteBall extends Ball {
       speed=speed/4;
       
  }
+ 
+ 
+ float getAngle(Ball t) {
+    float angle = (float) Math.toDegrees(Math.atan2(t.gety() - y, t.getx() - x));
+
+    if(angle < 0){
+        angle += 360;
+    }
+
+    return angle;
+}
   void goin() {
     speed=0;
     angle=0;
