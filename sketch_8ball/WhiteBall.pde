@@ -117,7 +117,7 @@ class WhiteBall extends Ball {
       for(Ball i:touching){//make not have duplicate  hits
         float newangle = getAngle(i);
         hit(i,speed,newangle);
-        angle-=newangle;//FIXX
+        angle=((newangle-180)+angle)/2;//FIXX
         angle=angle%360;
         i.goforward();
         goforward();

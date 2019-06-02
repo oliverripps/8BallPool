@@ -215,7 +215,7 @@ class Ball implements isCollideable {
   }
 
   void goforward() {
-    for (int i=0; i<5; i++) {
+    for (int i=0; i<0; i++) {
       x+=cos((float)(angle))*speed;
       y-=sin((float)(angle))*speed;
     }
