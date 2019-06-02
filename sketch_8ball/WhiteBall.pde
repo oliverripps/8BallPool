@@ -135,7 +135,7 @@ class WhiteBall extends Ball {
         y-=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
-     if(broken==false){
+     if(broken==false && x>860){
         breakup();
       broken=true;
     }
