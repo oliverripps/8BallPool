@@ -144,6 +144,8 @@ class Billiard {
 
       rect(400, 20, -power, 20);
     }
+     // text(baggedStripe.size(), 20, 10);
+    
     
     /*else{
       over=true;
