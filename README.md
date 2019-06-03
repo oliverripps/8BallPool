@@ -45,4 +45,13 @@ Wednesday May 29th:
 
 Thursday May 30th:
   -Kevin: Updating README
-  -Both: Trying to fix wall collision for non-white balls;
+  -Both: Trying to fix wall collisions for non-white balls. Got advice from Mr K. to separate operations and "use inheritance more effectively", but in an attempt to do so broke our whole project...WHOOPS.
+  -Oliver: Went back to old-state on a branch and started working forward again
+
+Friday May 31st-Tuesday June 4th:
+-Oliver: Changed ball collision radius to be more effective. Started to get balls to collide with the proper angles
+-Kevin: Added lines to show where the ball would end up
+-Oliver: Figured out how to detect the angle at which the ball should go by drawing line from hitting point to center of the other ball. Worked on fine tuning this because it still didn't always go the right way. Figured out a way to make break "work".
+-Kevin: Worked on way to have balls collide without duplicates with solid but not perfect success.
+-Oliver: Started working on an ambitious alternate way to make them collide will holding Kevin's partially working solution. 
+-Kevin: created ArrayList that shows balls that have been hit into holes and displays it.
