@@ -6,7 +6,7 @@ class WhiteBall extends Ball {
   boolean in;
   int counter;
   int isrecent;
-
+  float anglefromnumber;
   WhiteBall(int xx, int yy, int r, int g, int b) {
     counter=0;
     x=xx;
@@ -39,7 +39,10 @@ class WhiteBall extends Ball {
   boolean getIn() {
     return in;
   }
-
+  
+  boolean iswhite(){
+    return true;
+  }
   void replace() {
     fill(255, 255, 255);
     circle(mouseX, mouseY, 30);
@@ -59,8 +62,10 @@ class WhiteBall extends Ball {
   }
 
   boolean isTouching(Ball b) {
-    return(x/60==b.getx()/60 && y/60==b.gety()/60);
+    double distance = Math.sqrt(Math.pow(b.getx() - x, 2) + (Math.pow(b.gety() - y, 2)));
+    return distance<30;
   }
+  
   boolean bounce() {
     if (x<85) {
       if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
@@ -101,6 +106,7 @@ class WhiteBall extends Ball {
 
 
   void move() {
+    anglefromnumber=getAngle(balls.get(5));
     ArrayList<Ball> touching;
     if (isrecent>0) {
       touching=null;
@@ -161,9 +167,13 @@ class WhiteBall extends Ball {
   void hit(Ball i, float speed, float angle) {
     i.transferspeed(speed*2);
     i.transferangle(angle);
+    i.goforward();
     //CHECK IF CLOSE TO EDGE{
     speed=speed/4;
   }
+  
+  
+  
   void breakup() {
     for (int i=0; i<balls.size(); i++) {
       balls.get(i).setx((int)random(1020)+85);
@@ -184,14 +194,20 @@ class WhiteBall extends Ball {
 
 
   float getAngle(Ball t) {
-    float angle = (float) Math.toDegrees(Math.atan2(t.gety() - y, t.getx() - x));
+    float a;
+    if(t.gety()!=y && t.getx()!=x){
+     a = (float) Math.toDegrees(Math.atan2(t.gety() - y, t.getx() - x));
 
-    if (angle < 0) {
-      angle += 360;
+    if (a < 0) {
+      a += 360;
     }
-
-    return angle;
+    }
+    else{
+      a=angle;
+    }
+    return a;
   }
+  
   
   
   void goin() {
@@ -204,6 +220,7 @@ class WhiteBall extends Ball {
   void display() {
     fill(c1, c2, c3);
     circle(x, y, 30);
+    text(anglefromnumber,x+15,y-15);
     /*text(speed,x,y);
      text(angle,x+10,y-20);*/
   }

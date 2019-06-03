@@ -1,7 +1,6 @@
 class Ball implements isCollideable {
   int counter;
   int x, y;
-  //boolean isblack;
   int c1, c2, c3;
   float speed;
   float angle;
@@ -12,7 +11,7 @@ class Ball implements isCollideable {
   //boolean in;
 
 
-  Ball(int xx, int yy, int r, int g, int b, boolean s, int num, int cn) {
+  Ball(int xx, int yy, int r, int g, int b, boolean s, int num) {
     counter=0;
     x=xx;
     y=yy;
@@ -23,7 +22,6 @@ class Ball implements isCollideable {
     angle=0;
     solid = s;
     number = num;
-    collidenumber = cn;
     isrecent = 0;
 
     /*if(c1==0  && c2==0 && c3==0){
@@ -204,18 +202,20 @@ class Ball implements isCollideable {
 
 void move() {
     ArrayList<Ball> touching;
-    if (isrecent>0) {
-      touching=null;
+    /*if (isrecent>0) {
+     // touching=null;
       isrecent++;
-      if (isrecent>3) {
+      if (isrecent>5) {
         isrecent=0;
       }
-    }
-    if (isrecent==0  && broken) {
+    }*/
+    if (isrecent==0 && broken) {
       touching=checkTouch();
-      if (touching.size()!=0) {
-       for (Ball i : touching) {//make not have duplicate  hits
-          float newangle = getAngle(i);
+      for(Ball i:balls){
+        float newangle = getAngle(i);
+        if(touching.indexOf(i)!=-1){
+      //if (touching.size()!=0) {
+       //for (Ball i : touching) {//make not have duplicate  hits
           hit(i, speed, newangle);
           angle=((newangle-180)+angle)/2;
           angle=angle%360;
@@ -259,11 +259,13 @@ void move() {
     speed=speed/4;
   }
 
-
+boolean iswhite(){
+  return false;
+}
   ArrayList<Ball> checkTouch() {
     ArrayList<Ball> temp= new ArrayList<Ball>();
-    for (int x = collidenumber; x < balls.size(); x++ ) {
-      if (isTouching(balls.get(x))) {
+    for (int x = 0; x < balls.size(); x++ ) {
+      if (!balls.get(x).iswhite() && this!=balls.get(x) && this.isTouching(balls.get(x))) {
         temp.add(balls.get(x));
       }
     }

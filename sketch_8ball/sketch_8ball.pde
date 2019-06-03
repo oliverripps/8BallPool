@@ -13,7 +13,7 @@ void setBags(){
   baggedSolid = new ArrayList<Ball>(8);
  // baggedSolid.add(balll);
 }
-ArrayList<Ball> findMoving(){
+/*ArrayList<Ball> findMoving(){
   ArrayList<Ball> ret = new ArrayList<Ball>();
   for(Ball b:balls){
     if(b.getspeed()>0){
@@ -27,7 +27,7 @@ ArrayList<Ball> getTouching(Ball b){
   ArrayList<Ball> ret = new ArrayList<Ball>();
   ret=balls;
   ret.remove(b);
-  for(Ball i:balls){
+  for(Ball i:balls){ //<>//
     if(!b.isTouching(i)){
       ret.remove(i);
     }
@@ -50,7 +50,7 @@ ArrayList<Ball> addunique(ArrayList<Ball> toadd,ArrayList<Ball> total){
     }
   }
   return total;
-}
+}*/
 
 
 
@@ -89,13 +89,13 @@ void mouseReleased() {
   game.released();
   //startHit();
 }
- /*void keyPressed(){
+ void keyPressed(){
    for (int x = balls.size()-1; x >= 0; x--){
     Ball i = balls.get(x);
     i.move();
   }
   game.moveW();
-  }*/
+  }
  
    
 void draw() {
@@ -112,11 +112,11 @@ void draw() {
     over();
   }*/
   
-  for (int x = balls.size()-1; x >= 0; x--){
+  /*for (int x = balls.size()-1; x >= 0; x--){
     Ball i = balls.get(x);
     i.move();
   }
-  game.moveW();
+  game.moveW();*/
   }
   
   void over(){

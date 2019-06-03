@@ -67,7 +67,7 @@ class Billiard {
     //SET UP BALLS
     boolean s = true;
     for (int i=0; i<15; i++) {
-      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2, i);
+      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2);
       BallsToDisplay.add(ba);
       s = !s;
     }
@@ -125,7 +125,7 @@ class Billiard {
     //rotate(angle);
     stroke(255);
     line(0, 0, 0, -300); 
-    } //<>//
+    } 
     popMatrix();
     if (power!=0) {
       if (power>200) {
@@ -143,12 +143,9 @@ class Billiard {
       if (power<50 && power>00) {
         fill(255, 0, 0);
       }
-
-
-
       rect(400, 20, -power, 20);
-      
     }
+    
     textSize(32);
     fill(255, 255, 255);
     for (int x = 0; x < baggedStripe.size(); x++){
@@ -157,6 +154,8 @@ class Billiard {
       for (int x = 0; x < baggedSolid.size(); x++){
         text(baggedSolid.get(x).getCollideNumber(), 800+(30*x), 630); //NEED TO REPLACE TEXT WITH THE ACTUAL BALLS
       }
+    
+    
     /*if (isrecent>0) {
       touches=null;
       isrecent++;
@@ -174,20 +173,20 @@ class Billiard {
             a=a%360;
             hit(touches.get(l).get(i),touches.get(l).get(0).getspeed(), 
             newangle,touches.get(l).get(0),touches.get(l).get(0).getspeed(),a);
+          }
           isrecent=1;
         }
-      }
+      }*/
     }
-    }*/
+ 
     
     
-     // text(baggedStripe.size(), 20, 10);
+      //text(baggedStripe.size(), 20, 10);
     
     
     /*else{
       over=true;
     }*/
-  }
   /*
   void hit(Ball i, float speed, float angle, Ball b, float s2, float a2) {
     i.transferspeed(speed*2);
@@ -258,4 +257,3 @@ class Billiard {
   }*/
   
       }
- 
