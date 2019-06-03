@@ -6,7 +6,13 @@ ArrayList<Ball> baggedSolid;
 boolean broken;
 boolean over;
 
-
+void setBags(){
+ // Ball balll = new Ball(1, 1, 0, 0, 0, true, 123, 123);
+  baggedStripe = new ArrayList<Ball>(8);
+ // baggedStripe.add(balll);
+  baggedSolid = new ArrayList<Ball>(8);
+ // baggedSolid.add(balll);
+}
 ArrayList<Ball> findMoving(){
   ArrayList<Ball> ret = new ArrayList<Ball>();
   for(Ball b:balls){
@@ -58,11 +64,12 @@ interface isCollideable {
 
 void setup() {
   size(1200, 650);
+  setBags();
   Billiard b = new Billiard();
   game=b;
   balls=game.setTable();
-  baggedStripe = new ArrayList<Ball>(8);
-  baggedSolid = new ArrayList<Ball>(8);
+  
+
   
   broken=false;
   over=false;

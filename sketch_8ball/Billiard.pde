@@ -8,6 +8,7 @@ class Billiard {
   Ball eight;
   int isrecent;
   ArrayList<ArrayList<Ball>> touches;
+
   
   int[] setPos = new int[]{870, 325, 
     896, 310, 896, 340, 
@@ -146,7 +147,16 @@ class Billiard {
 
 
       rect(400, 20, -power, 20);
+      
     }
+    textSize(32);
+    fill(255, 255, 255);
+    for (int x = 0; x < baggedStripe.size(); x++){
+        text(baggedStripe.get(x).getCollideNumber(), 200+(30*x), 630);
+      }
+      for (int x = 0; x < baggedSolid.size(); x++){
+        text(baggedSolid.get(x).getCollideNumber(), 800+(30*x), 630); //NEED TO REPLACE TEXT WITH THE ACTUAL BALLS
+      }
     /*if (isrecent>0) {
       touches=null;
       isrecent++;

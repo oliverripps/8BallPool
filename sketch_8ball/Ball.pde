@@ -36,7 +36,9 @@ class Ball implements isCollideable {
   }
   Ball() {
   }
-
+  int getCollideNumber(){
+    return collidenumber;
+  }
   int getx() {
     return x;
   }
@@ -143,12 +145,13 @@ class Ball implements isCollideable {
 
   void goin() {
     speed=0;
-    balls.remove(this);
     if (solid) {
       baggedSolid.add(this);
-    } else {
+    } 
+    else {
       baggedStripe.add(this);
     }
+    balls.remove(this);
     //in=true;
   }
 
