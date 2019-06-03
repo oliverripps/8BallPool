@@ -151,5 +151,44 @@ class Billiard {
       over=true;
     }*/
   }
+  
+  /*ArrayList<ArrayList<Ball>> makeTouches(){
+      ArrayList<ArrayList<Ball>> t = new ArrayList<ArrayList<Ball>>();
+      for(int i=0;i<balls.size();i++){
+        ArrayList<Ball> temp= new ArrayList<Ball>();
+        temp.add(balls(i));
+        t.add(temp);
+      }
+      for(int i=0;i<t.size();i++){
+        addtouches(t.get(i));
+      }
+      fixduplicates(t);
+      return t;
+  }
+  ArrayList<Ball> addtouches(ArrayList<Ball> b){
+    for(int i=0;i<balls.size();i++){
+      if(b.get(0).isTouching(balls.get(i)){
+        b.add(balls.get(i));
+      }
+    }
+    return b;
+  }
+  
+  int getmax(ArrayList<ArrayList<Ball>> big){
+    int temp=0;
+    for(ArrayList<Ball> f:big){
+      if(f.size()>temp){
+        temp=f.size();
+      }
+    }
+    return temp;
+  }
+  ArrayList<ArrayList<Ball>> fixduplicates(ArrayList<ArrayList<Ball>> big){
+    for(int i=0;i<getmax(big);i++_
+    for(ArrayList<Ball> ab:big){
+      for(int i=1;i<ab.size();i++){
+        Ball temp=ab.get(i)
+        
+  }*/
   }
  
