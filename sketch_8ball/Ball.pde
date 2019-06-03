@@ -208,10 +208,10 @@ void move() {
         isrecent=0;
       }
     }
-    if (isrecent==0) {
+    if (isrecent==0  && broken) {
       touching=checkTouch();
       if (touching.size()!=0) {
-        /*for (Ball i : touching) {//make not have duplicate  hits
+       for (Ball i : touching) {//make not have duplicate  hits
           float newangle = getAngle(i);
           hit(i, speed, newangle);
           angle=((newangle-180)+angle)/2;
@@ -219,7 +219,7 @@ void move() {
           i.goforward();
           goforward();
           isrecent=1;
-        }*/
+        }
       }
     }
 
@@ -251,7 +251,7 @@ void move() {
   }
 
   void hit(Ball i, float speed, float angle) {
-    i.transferspeed(speed*2);
+    i.transferspeed(speed);
     i.transferangle(angle);
     speed=speed/4;
   }

@@ -124,7 +124,7 @@ class Billiard {
     //rotate(angle);
     stroke(255);
     line(0, 0, 0, -300); 
-    }
+    } //<>//
     popMatrix();
     if (power!=0) {
       if (power>200) {
@@ -147,7 +147,7 @@ class Billiard {
 
       rect(400, 20, -power, 20);
     }
-    if (isrecent>0) {
+    /*if (isrecent>0) {
       touches=null;
       isrecent++;
       if (isrecent>3) {
@@ -157,18 +157,19 @@ class Billiard {
     if (isrecent==0) {
       touches=makeTouches();
       if (touches.size()!=0) {
-        for(int i=0;i<touches.size();i++){
-          
-          float newangle = getAngle(i);
-          hit(i, speed, newangle);
-          angle=((newangle-180)+angle)/2;//FIXX
-          angle=angle%360;
-          i.goforward();
-          goforward();
+        for(int l=0;l<touches.size();l++){
+          for(int i=1;i<getmax(touches);i++){
+            float newangle = touches.get(l).get(0).getAngle(touches.get(l).get(i));
+            float a=((newangle-180)+angle)/2;
+            a=a%360;
+            hit(touches.get(l).get(i),touches.get(l).get(0).getspeed(), 
+            newangle,touches.get(l).get(0),touches.get(l).get(0).getspeed(),a);
           isrecent=1;
         }
       }
     }
+    }*/
+    
     
      // text(baggedStripe.size(), 20, 10);
     
@@ -177,11 +178,14 @@ class Billiard {
       over=true;
     }*/
   }
+  /*
   void hit(Ball i, float speed, float angle, Ball b, float s2, float a2) {
     i.transferspeed(speed*2);
     i.transferangle(angle);
     //CHECK IF CLOSE TO EDGE{
     speed=speed/4;
+    i.goforward();
+    b.goforward();
   }
   
 
@@ -206,8 +210,10 @@ class Billiard {
   }
   
   ArrayList<Ball> addtouches(ArrayList<Ball> b){
+    //ONLY IF MOVING
+    
     for(int i=0;i<balls.size();i++){
-      if(b.get(0).isTouching(balls.get(i)){
+      if(b.get(0).isTouching(balls.get(i))){
         b.add(balls.get(i));
       }
     }
