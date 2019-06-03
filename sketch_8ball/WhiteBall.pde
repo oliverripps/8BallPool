@@ -192,6 +192,8 @@ class WhiteBall extends Ball {
 
     return angle;
   }
+  
+  
   void goin() {
     speed=0;
     angle=0;

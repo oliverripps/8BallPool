@@ -6,6 +6,7 @@ class Billiard {
   WhiteBall w;
   ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
   Ball eight;
+  ArrayList<ArrayList<Ball>> touches;
   
   int[] setPos = new int[]{870, 325, 
     896, 310, 896, 340, 
@@ -63,7 +64,7 @@ class Billiard {
     //SET UP BALLS
     boolean s = true;
     for (int i=0; i<15; i++) {
-      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2, i);
+      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2);
       BallsToDisplay.add(ba);
       s = !s;
     }
@@ -120,7 +121,7 @@ class Billiard {
     
     //rotate(angle);
     stroke(255);
-    line(0, 0, 0, -300); 
+    line(0, 0, 0, -200); 
     }
     popMatrix();
     if (power!=0) {
@@ -144,12 +145,29 @@ class Billiard {
 
       rect(400, 20, -power, 20);
     }
-     // text(baggedStripe.size(), 20, 10);
     
     
     /*else{
       over=true;
     }*/
+    ArrayList<ArrayList<Ball>> makeTouches(){
+      ArrayList<ArrayList<Ball>> t = new ArrayList<ArrayList<Ball>>();
+      for(int i=0;i<balls.size();i++){
+        ArrayList<Ball> temp= new ArrayList<Ball>();
+        temp.add(balls(i));
+        t.add(temp);
+      }
+      for(int i=0;i<t.size();i++){
+        addtouches(t.get(i));
+      }
+      fixduplicates(t);
+      return t;
   }
+  ArrayList<Ball> addtouches(ArrayList<Ball>){
   }
+  ArrayList<ArrayList<Ball>> fixduplicates(ArrayList<ArrayList<Ball>>){
+  }
+    
+  }
+  
  

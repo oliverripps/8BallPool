@@ -7,12 +7,10 @@ class Ball implements isCollideable {
   float angle;
   boolean solid;
   int number;
-  int collidenumber;
-  int isrecent;
   //boolean in;
+  
 
-
-  Ball(int xx, int yy, int r, int g, int b, boolean s, int num, int cn) {
+  Ball(int xx, int yy, int r, int g, int b, boolean s, int num) {
     counter=0;
     x=xx;
     y=yy;
@@ -23,15 +21,12 @@ class Ball implements isCollideable {
     angle=0;
     solid = s;
     number = num;
-    collidenumber = cn;
-    isrecent = 0;
-
     /*if(c1==0  && c2==0 && c3==0){
-     isblack=true;
-     }
-     else{
-     isblack=false;
-     }*/
+      isblack=true;
+    }
+    else{
+      isblack=false;
+    }*/
     //INSTANCE VARIABLES
   }
   Ball() {
@@ -43,18 +38,18 @@ class Ball implements isCollideable {
   int gety() {
     return y;
   }
-
+  
   /*boolean isblack(){
-   return isblack;
-   }*/
+    return isblack;
+  }*/
   void setx(int n) {
     x=n;
   }
   void sety(int n) {
     y=n;
   }
-
-  float getspeed() {
+  
+  float getspeed(){
     return speed;
   }
 
@@ -96,13 +91,14 @@ class Ball implements isCollideable {
       textSize(12);
       text(number, x-4, y+5);
     }
-   // text(collidenumber, x+20, y);
+    /*text(speed, x+20, y);
+    text(angle, x+20, y-20);*/
   }
 
 
   /*boolean isin(){
-   return in;
-   }*/
+    return in;
+  }*/
   boolean bounce() {
     if (x<85) {
       if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
@@ -166,29 +162,29 @@ class Ball implements isCollideable {
     return false;
   }
 
- /* void move() {
+  void move() {
     ArrayList<Ball> touching;
-    touching=checkTouch();
+    /*touching=checkTouch();
      if(touching.size()!=0){
      for(Ball i:touching){//make not have duplicate  hits
      hit(i,speed,angle);
      }
-     }
+     }*/
     x+=cos((float)(Math.toRadians(angle)))*speed;
     y-=sin((float)(Math.toRadians(angle)))*speed;
     if (bounce()) {
       goforward();
     }
-    if (x<80) {
+    if(x<80){
       x=90;
     }
-    if (x>1110) {
+    if(x>1110){
       x=1100;
     }
-    if (y<68) {
+    if(y<68){
       y=75;
     }
-    if (y>565) {
+    if(y>565){
       y=555;
     }
     if (speed>0) {
@@ -197,85 +193,28 @@ class Ball implements isCollideable {
         speed=0;
       }
     }
-  }*/
 
-void move() {
-    ArrayList<Ball> touching;
-    if (isrecent>0) {
-      touching=null;
-      isrecent++;
-      if (isrecent>3) {
-        isrecent=0;
-      }
-    }
-    if (isrecent==0) {
-      touching=checkTouch();
-      if (touching.size()!=0) {
-        /*for (Ball i : touching) {//make not have duplicate  hits
-          float newangle = getAngle(i);
-          hit(i, speed, newangle);
-          angle=((newangle-180)+angle)/2;
-          angle=angle%360;
-          i.goforward();
-          goforward();
-          isrecent=1;
-        }*/
-      }
-    }
-
-
-    x+=cos((float)(Math.toRadians(angle)))*speed;
-    y-=sin((float)(Math.toRadians(angle)))*speed;
-    if (bounce()) {
-      for (int i=0; i<3; i++) {
-        x+=cos((float)(Math.toRadians(angle)))*speed;
-        y-=sin((float)(Math.toRadians(angle)))*speed;
-      }
-    }
-    if (speed>0) {
-      speed-=.3;
-      if (speed<0) {
-        speed=0;
-      }
-    }
   }
   
-  float getAngle(Ball t) {
-    float angle = (float) Math.toDegrees(Math.atan2(t.gety() - y, t.getx() - x));
-
-    if (angle < 0) {
-      angle += 360;
-    }
-
-    return angle;
-  }
-
+  
   void hit(Ball i, float speed, float angle) {
-    i.transferspeed(speed*2);
+    i.transferspeed(speed/5);
     i.transferangle(angle);
-    speed=speed/4;
+    i.goforward();
+    //speed-=speed/5;
+    angle+=180;
   }
-
-
-  ArrayList<Ball> checkTouch() {
+  
+  
+  /*ArrayList<Ball> checkTouch() {
     ArrayList<Ball> temp= new ArrayList<Ball>();
-    for (int x = collidenumber; x < balls.size(); x++ ) {
-      if (isTouching(balls.get(x))) {
-        temp.add(balls.get(x));
-      }
-    }
-    
-    String listString = "";
-    for (Ball b : temp)
-    {
-      listString += b.collidenumber + "\t";
-    }
-    textSize(15);
-    fill(255,0,0);
-    text(listString, x+20, y+10);
-    
+    /*for(Ball b:balls){
+     if(isTouching(b)){
+     temp.add(b);
+     }
+     }
     return temp;
-  }
+  }*/
 
   void goforward() {
     for (int i=0; i<0; i++) {
