@@ -152,6 +152,8 @@ class Billiard {
     }*/
   }
   
+  
+  
   /*ArrayList<ArrayList<Ball>> makeTouches(){
       ArrayList<ArrayList<Ball>> t = new ArrayList<ArrayList<Ball>>();
       for(int i=0;i<balls.size();i++){
