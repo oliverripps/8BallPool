@@ -6,6 +6,8 @@ class Billiard {
   WhiteBall w;
   ArrayList<Ball> BallsToDisplay = new ArrayList<Ball>();
   Ball eight;
+  int isrecent;
+  ArrayList<ArrayList<Ball>> touches;
   
   int[] setPos = new int[]{870, 325, 
     896, 310, 896, 340, 
@@ -23,6 +25,7 @@ class Billiard {
     in=false;
     power=0;
     whiteAngle =0;
+    isrecent=0;
     //setTable();
     //INSTANCE VARIABLES RESET
   }
@@ -144,6 +147,29 @@ class Billiard {
 
       rect(400, 20, -power, 20);
     }
+    if (isrecent>0) {
+      touches=null;
+      isrecent++;
+      if (isrecent>3) {
+        isrecent=0;
+      }
+    }
+    if (isrecent==0) {
+      touches=makeTouches();
+      if (touches.size()!=0) {
+        for(int i=0;i<touches.size();i++){
+          
+          float newangle = getAngle(i);
+          hit(i, speed, newangle);
+          angle=((newangle-180)+angle)/2;//FIXX
+          angle=angle%360;
+          i.goforward();
+          goforward();
+          isrecent=1;
+        }
+      }
+    }
+    
      // text(baggedStripe.size(), 20, 10);
     
     
@@ -151,20 +177,31 @@ class Billiard {
       over=true;
     }*/
   }
+  void hit(Ball i, float speed, float angle, Ball b, float s2, float a2) {
+    i.transferspeed(speed*2);
+    i.transferangle(angle);
+    //CHECK IF CLOSE TO EDGE{
+    speed=speed/4;
+  }
   
-  
- /* 
+
   ArrayList<ArrayList<Ball>> makeTouches(){
       ArrayList<ArrayList<Ball>> t = new ArrayList<ArrayList<Ball>>();
       for(int i=0;i<balls.size();i++){
         ArrayList<Ball> temp= new ArrayList<Ball>();
-        temp.add(balls(i));
+        temp.add(balls.get(i));
         t.add(temp);
       }
       for(int i=0;i<t.size();i++){
         addtouches(t.get(i));
       }
-      fixduplicates(t);
+      for(int i=0;i<t.size();i++){
+      if(t.get(i).size()<getmax(t)){
+        while(t.get(i).size()<getmax(t)){
+          t.get(i).set(t.get(i).size(),null);
+        }
+      }
+    }
       return t;
   }
   
@@ -186,7 +223,7 @@ class Billiard {
     }
     return temp;
   }
-  ArrayList<ArrayList<Ball>> fixduplicates(ArrayList<ArrayList<Ball>> big){
+  /*ArrayList<ArrayList<Ball>> fixduplicates(ArrayList<ArrayList<Ball>> big){
     for(int i=0;i<big.size();i++){
       if(big.get(i).size()<getmax(big)){
         while(big.get(i).size()<getmax(big)){
@@ -201,6 +238,8 @@ class Billiard {
       for(int i=1;i<ab.size();i++){
         Ball temp=ab.get(i)
         
-  }*/
   }
+  }*/
+  
+      }
  
