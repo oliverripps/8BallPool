@@ -109,13 +109,20 @@ class Billiard {
     int[] collidenumsStripe = new int[baggedStripe.size()];
     for (int i = 0; i < baggedSolid.size(); i++) {
       collidenumsSolid[i] = baggedSolid.get(i).getCollideNumber();
-      quicksort(collidenumsSolid);
+     /* for(int j =0; j<collidenumsSolid.length; j++){
+        textSize(12);
+        text(collidenumsSolid[j], 700+20*j, 500);
+    }*/
     }
     for (int i = 0; i < baggedStripe.size(); i++) {
       collidenumsStripe[i] = baggedStripe.get(i).getCollideNumber();
-      quicksort(collidenumsStripe);
+     /* for(int j =0; j<collidenumsStripe.length; j++){
+        textSize(12);
+        text(collidenumsStripe[j], 500+20*j, 500);
+    }*/
     }
-      
+    quicksort(collidenumsStripe);
+    quicksort(collidenumsSolid);
     for (int x =0; x < collidenumsSolid.length; x++){
       int cn = collidenumsSolid[x];
       int xcor = 200+(30*x);
