@@ -139,7 +139,7 @@ class WhiteBall extends Ball {
         y-=sin((float)(Math.toRadians(angle)))*speed;
       }
     }
-    if (broken==false && x>860) {
+    if (broken==false && x>840) {
       breakup();
       broken=true;
     }
@@ -220,7 +220,7 @@ class WhiteBall extends Ball {
   void display() {
     fill(c1, c2, c3);
     circle(x, y, 30);
-    text(anglefromnumber,x+15,y-15);
+    //text(anglefromnumber,x+15,y-15);
     /*text(speed,x,y);
      text(angle,x+10,y-20);*/
   }
