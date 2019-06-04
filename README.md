@@ -61,7 +61,7 @@ Thursday May 30th:
 
 Friday May 31st-Tuesday June 4th:
 -Oliver: Changed ball collision radius to be more effective. Started to get balls to collide with the proper angles
--Kevin: Added lines to show where the ball would end up
+-Kevin: Added lines to show where the white ball would end up
 -Oliver: Figured out how to detect the angle at which the ball should go by drawing line from hitting point to center of the other ball. Worked on fine tuning this because it still didn't always go the right way. Figured out a way to make break "work".
 -Kevin: Worked on way to have balls collide without duplicates with solid but not perfect success.
 -Oliver: Started working on an ambitious alternate way to make them collide will holding Kevin's partially working solution.
