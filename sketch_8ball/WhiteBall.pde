@@ -39,8 +39,8 @@ class WhiteBall extends Ball {
   boolean getIn() {
     return in;
   }
-  
-  boolean iswhite(){
+
+  boolean iswhite() {
     return true;
   }
   void replace() {
@@ -65,7 +65,7 @@ class WhiteBall extends Ball {
     double distance = Math.sqrt(Math.pow(b.getx() - x, 2) + (Math.pow(b.gety() - y, 2)));
     return distance<30;
   }
-  
+
   boolean bounce() {
     if (x<85) {
       if ((y<88 && angle>90 && angle<180) || (y>559 && angle>180 && angle<270)) {
@@ -171,9 +171,9 @@ class WhiteBall extends Ball {
     //CHECK IF CLOSE TO EDGE{
     speed=speed/4;
   }
-  
-  
-  
+
+
+
   void breakup() {
     for (int i=0; i<balls.size(); i++) {
       balls.get(i).setx((int)random(1020)+85);
@@ -195,21 +195,20 @@ class WhiteBall extends Ball {
 
   float getAngle(Ball t) {
     float a;
-    if(t.gety()!=y && t.getx()!=x){
-     a = (float) Math.toDegrees(Math.atan2(t.gety() - y, t.getx() - x));
+    if (t.gety()!=y && t.getx()!=x) {
+      a = (float) Math.toDegrees(Math.atan2(t.gety() - y, t.getx() - x));
 
-    if (a < 0) {
-      a += 360;
-    }
-    }
-    else{
+      if (a < 0) {
+        a += 360;
+      }
+    } else {
       a=angle;
     }
     return a;
   }
-  
-  
-  
+
+
+
   void goin() {
     speed=0;
     angle=0;

@@ -8,19 +8,19 @@ class Billiard {
   Ball eight;
   int isrecent;
   ArrayList<ArrayList<Ball>> touches;
-
-
   int[] setPos = new int[]{870, 325, 
     896, 310, 896, 340, 
     922, 295, 922, 325, 922, 355, 
     948, 280, 948, 310, 948, 340, 948, 370, 
     974, 265, 974, 295, 974, 325, 974, 355, 974, 385 };
-
-
   int[] setColor = new int[]{255, 255, 0, 0, 0, 255, 255, 0, 0, 128, 0, 128, 255, 165, 0, 50, 205, 50, 128, 0, 32, 
     255, 255, 0, 0, 0, 255, 255, 0, 0, 128, 0, 128, 255, 165, 0, 50, 205, 50, 128, 0, 32, 
     0, 0, 0};
 
+  
+  
+  
+  ////CONSTRUCTOR////
   Billiard() {
     table = loadImage("pooltable.png");
     in=false;
@@ -34,8 +34,7 @@ class Billiard {
   void moveW() {
     w.move();
   }
-
-
+  
   void click(int mousex, int mousey) {
     if (w.getIn()) {
       WhiteBall b = new WhiteBall(mousex, mousey, 255, 255, 255);
@@ -44,13 +43,15 @@ class Billiard {
       w.setIn(false);
     }
   }
-
+  
   void movestick() {
     power+=5;
   }
+  
   WhiteBall returnWhite() {
     return w;
   }
+  
   void removeBall(WhiteBall b) {
     in=true;
     BallsToDisplay.remove(b);
@@ -109,21 +110,21 @@ class Billiard {
     int[] collidenumsStripe = new int[baggedStripe.size()];
     for (int i = 0; i < baggedSolid.size(); i++) {
       collidenumsSolid[i] = baggedSolid.get(i).getCollideNumber();
-     /* for(int j =0; j<collidenumsSolid.length; j++){
-        textSize(12);
-        text(collidenumsSolid[j], 700+20*j, 500);
-    }*/
+      /* for(int j =0; j<collidenumsSolid.length; j++){
+       textSize(12);
+       text(collidenumsSolid[j], 700+20*j, 500);
+       }*/
     }
     for (int i = 0; i < baggedStripe.size(); i++) {
       collidenumsStripe[i] = baggedStripe.get(i).getCollideNumber();
-     /* for(int j =0; j<collidenumsStripe.length; j++){
-        textSize(12);
-        text(collidenumsStripe[j], 500+20*j, 500);
-    }*/
+      /* for(int j =0; j<collidenumsStripe.length; j++){
+       textSize(12);
+       text(collidenumsStripe[j], 500+20*j, 500);
+       }*/
     }
     quicksort(collidenumsStripe);
     quicksort(collidenumsSolid);
-    for (int x =0; x < collidenumsSolid.length; x++){
+    for (int x =0; x < collidenumsSolid.length; x++) {
       int cn = collidenumsSolid[x];
       int xcor = 200+(30*x);
       int ycor = 630;
@@ -136,10 +137,8 @@ class Billiard {
       fill(0, 0, 0);
       textSize(12);
       text((cn+2)/2, xcor-4, ycor+5);
-      }
-      
-    
-    for (int x =0; x <collidenumsStripe.length; x++){
+    }
+    for (int x =0; x <collidenumsStripe.length; x++) {
       int cn = collidenumsStripe[x];
       int xcor = 800+(30*x);
       int ycor = 630;
