@@ -35,6 +35,7 @@ class Billiard {
     w.move();
   }
   
+  
   void click(int mousex, int mousey){
     if(w.getIn()){
     WhiteBall b = new WhiteBall(mousex, mousey, 255, 255, 255);
@@ -67,7 +68,7 @@ class Billiard {
     //SET UP BALLS
     boolean s = true;
     for (int i=0; i<15; i++) {
-      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2);
+      Ball ba = new Ball(setPos[i*2], setPos[i*2+1], setColor[3*i], setColor[3*i+1], setColor[3*i+2], s, (i+2)/2, i);
       BallsToDisplay.add(ba);
       s = !s;
     }
@@ -83,7 +84,7 @@ class Billiard {
     return BallsToDisplay;
         
   }
-
+  
   void released() {
     w.transferangle(180 - degrees(whiteAngle)); 
     w.transferspeed(power*.8);
@@ -93,6 +94,57 @@ class Billiard {
   /*boolean eightin(){
     return eight.isin();
   }*/
+  
+  void polygon(float x, float y, float radius, int npoints) {  //Copied from processing.org
+    float angle = TWO_PI / npoints;
+    beginShape();
+    for (float a = 0; a < TWO_PI; a += angle) {
+      float sx = x + cos(a) * radius;
+      float sy = y + sin(a) * radius;
+      vertex(sx, sy);
+    }
+    endShape(CLOSE);
+  }
+  
+  void ballDisplay() {
+for (int x = 0; x < baggedSolid.size(); x++){
+     /* text(123, 200+(30*x), 630);*/
+      int cn = baggedSolid.get(x).getCollideNumber();
+      stroke(0, 0, 0);
+      fill(setColor[3*cn], setColor[3*cn+1], setColor[3*cn+2]);
+      circle(200+(30*x), 630, 30);
+      ellipseMode(CENTER);  // Set ellipseMode to CENTER
+      fill(255);  // Set fill to white
+      circle(200+(30*x), 630, 13);  // Draw white ellipse using CENTER mode
+      fill(0, 0, 0);
+      textSize(12);
+      text((cn+2)/2, 200+(30*x)-4,  630+5);
+    } 
+    for (int i = 0; i < baggedStripe.size(); i++){
+      /*text(1234, 800+(30*i), 630);*/
+      
+      int cn = baggedStripe.get(i).getCollideNumber();
+      int x = 800+(30*i);
+      int y = 630;
+      stroke(0, 0, 0);
+      fill(255, 255, 255);
+      circle(x, y, 30);
+      fill(setColor[3*cn], setColor[3*cn+1], setColor[3*cn+2]);
+      rect(x-12.5, y-7.5, 26, 15);
+      stroke(setColor[3*cn], setColor[3*cn+1], setColor[3*cn+2]);
+      polygon(x-8.7, y+.4, 5.4, 20);
+      polygon(x+8.9, y+.4, 5.4, 20);
+      rect(x-12, y-5, 24, 10);
+      fill(255, 255, 255);
+      circle(x, y, 13);
+      fill(0, 0, 0);
+      textSize(12);
+      text((cn+2)/2, x-4, y+5);
+   // text(collidenumber, x+20, y);
+  }
+  }
+
+
   
   void display() {
     //if(!eightin()){
@@ -145,15 +197,9 @@ class Billiard {
       }
       rect(400, 20, -power, 20);
     }
+    ballDisplay();
     
-    textSize(32);
-    fill(255, 255, 255);
-    for (int x = 0; x < baggedStripe.size(); x++){
-        text(baggedStripe.get(x).getCollideNumber(), 200+(30*x), 630);
-      }
-      for (int x = 0; x < baggedSolid.size(); x++){
-        text(baggedSolid.get(x).getCollideNumber(), 800+(30*x), 630); //NEED TO REPLACE TEXT WITH THE ACTUAL BALLS
-      }
+    
     
     
     /*if (isrecent>0) {
