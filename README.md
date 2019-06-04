@@ -66,3 +66,5 @@ Friday May 31st-Tuesday June 4th:
 -Kevin: Worked on way to have balls collide without duplicates with solid but not perfect success.
 -Oliver: Started working on an ambitious alternate way to make them collide will holding Kevin's partially working solution.
 -Kevin: created ArrayList that shows balls that have been hit into holes and displays it.
+-Oliver: Updated DESCRIPTION
+-Kevin: Finalized details of the project and got the UML ready for tomorrow.
