@@ -65,6 +65,6 @@ Friday May 31st-Tuesday June 4th:
 -Oliver: Figured out how to detect the angle at which the ball should go by drawing line from hitting point to center of the other ball. Worked on fine tuning this because it still didn't always go the right way. Figured out a way to make break "work".
 -Kevin: Worked on way to have balls collide without duplicates with solid but not perfect success.
 -Oliver: Started working on an ambitious alternate way to make them collide will holding Kevin's partially working solution.
--Kevin: created ArrayList that shows balls that have been hit into holes and displays it.
+-Kevin: created ArrayList that shows balls that have been hit into holes and displays it using Quicksort.
 -Oliver: Updated DESCRIPTION
 -Kevin: Finalized details of the project and got the UML ready for tomorrow.
