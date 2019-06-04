@@ -281,7 +281,7 @@ class Ball implements isCollideable {
     }
     textSize(15);
     fill(255, 0, 0);
-    text(listString, x+20, y+10);
+    //text(listString, x+20, y+10);
 
     return temp;
   }
