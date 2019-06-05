@@ -158,7 +158,8 @@ class Ball implements isCollideable {
   }
 
   boolean isTouching(Ball b) {
-    return(x/60==b.getx()/60 && y/60==b.gety()/60);
+    double distance = Math.sqrt(Math.pow(b.getx() - x, 2) + (Math.pow(b.gety() - y, 2)));
+    return distance<30;
   }
 
 

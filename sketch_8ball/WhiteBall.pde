@@ -111,7 +111,7 @@ class WhiteBall extends Ball {
     if (isrecent>0) {
       touching=null;
       isrecent++;
-      if (isrecent>3) {
+      if (isrecent>20) {
         isrecent=0;
       }
     }
@@ -120,7 +120,7 @@ class WhiteBall extends Ball {
       if (touching.size()!=0) {
         for (Ball i : touching) {//make not have duplicate  hits
           float newangle = i.getAngle(this);
-          hit(i, speed, newangle);
+          hit(i, speed, newangle, angle);
           angle=((newangle-180)+angle)/2;//FIXX
           angle=angle%360;
           i.goforward();
@@ -164,9 +164,12 @@ class WhiteBall extends Ball {
     return speed;
   }
 
-  void hit(Ball i, float speed, float angle) {
+  void hit(Ball i, float speed, float newangle, float angle) {
     i.transferspeed(speed*2);
-    i.transferangle(angle);
+    if(Math.abs(newangle-angle)>180){
+      newangle+=180;
+    }
+    i.transferangle(newangle);
     i.goforward();
     //CHECK IF CLOSE TO EDGE{
     speed=speed/4;
